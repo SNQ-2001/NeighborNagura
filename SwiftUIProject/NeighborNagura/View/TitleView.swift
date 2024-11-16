@@ -63,7 +63,7 @@ struct TitleView: View {
                 switch destination {
                 case .host: HostView(navigatePath: $navigatePath, gameState: gameState)
                 case .guest: GuestView(navigatePath: $navigatePath, gameState: gameState)
-                case .game: GameView(navigatePath: $navigatePath)
+                case .game: GameView(navigatePath: $navigatePath, gameState: gameState)
                 case .result: ResultView(navigatePath: $navigatePath)
                 }
             }
