@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UniRx;
 
 public class GameManager : MonoBehaviour
 {
@@ -35,6 +36,16 @@ public class GameManager : MonoBehaviour
 
         m_Camera.transform.position = CalcCameraPosition(userRole);
         
+        m_ForceManager = Instantiate(m_ForceManagerPrefab);
+        m_ChangeSceneButton.OnClickAsObservable().Subscribe((_) =>
+        {
+            NativeStateManager.GameClearUnity();
+        }).AddTo(this);
+    }
+
+    void Update()
+    {
+        NativeState state = NativeStateManager.State;
         Vector3 stateVector = new Vector3(
             (float)state.x,
             (float)state.y,
@@ -42,8 +53,6 @@ public class GameManager : MonoBehaviour
         );
         
         m_AccelerationText.text = stateVector.ToString();
-        
-        m_ForceManager = Instantiate(m_ForceManagerPrefab);
     }
 
     private Vector3 CalcCameraPosition(int userRole)
