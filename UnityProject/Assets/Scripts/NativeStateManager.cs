@@ -1,5 +1,8 @@
 /* Support init only setters. See section on record
    support: docs.unity3d.com/Manual/CSharpCompiler.html */
+
+using UnityEngine;
+
 namespace System.Runtime.CompilerServices
 {
     internal class IsExternalInit{}
@@ -8,12 +11,9 @@ namespace System.Runtime.CompilerServices
 // Should match NativeState struct in Assets/Plugins/iOS/NativeState.h
 public readonly struct NativeState
 {
-    public float scale { get; init; }
-    public bool visible { get; init; }
-    public string spotlight { get; init; }
-    public int textureWidth { get; init; }
-    public int textureHeight { get; init; }
-    public System.IntPtr texture { get; init; }
+    public double x { get; init; }
+    public double y { get; init; }
+    public double z { get; init; }
 }
 
 public static class NativeStateManager
@@ -38,5 +38,10 @@ public static class NativeStateManager
         #if !UNITY_EDITOR
             OnSetNativeState(SetState);
         #endif
+    }
+
+    public static void EndGameScene()
+    {
+        Debug.Log("EndGameScene");
     }
 }
