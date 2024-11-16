@@ -13,3 +13,11 @@ void RegisterNativeStateSetter(id<SetsNativeState> setter) {
 void OnSetNativeState(SetNativeStateCallback callback) {
     nativeStateSetter.setNativeState = callback;
 }
+
+void GameClear() {
+    [nativeStateSetter gameClear];
+}
+
+void GameOver() {
+    [nativeStateSetter gameOver];
+}

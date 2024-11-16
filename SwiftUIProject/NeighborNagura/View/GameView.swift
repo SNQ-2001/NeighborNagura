@@ -23,13 +23,6 @@ struct GameView: View {
             } else {
                 Text("エラー。発生していたら報告。")
             }
-            
-            Button {
-                gameViewModel.gameFinish(gameState: gameState)
-            } label: {
-                Text("ゲームを終了する")
-            }
-            .buttonStyle(.borderedProminent)
         }
         .onAppear(perform: handleUnityStart)
         .onDisappear(perform: handleUnityStop)
@@ -51,6 +44,20 @@ struct GameView: View {
         .onChange(of: gameState.phase) {
             if (gameState.phase == .finished) {
                 navigatePath.append(.result)
+            }
+        }
+        .onChange(of: unity.isGameClear) {
+            if unity.isGameClear {
+                unity.isGameClear = false
+                // TODO: リザルトに情報を持たせる必要があるかも（そうするとゲームクリアとゲームオーバーで分岐せずに済む）
+                gameViewModel.gameFinish(gameState: gameState)
+            }
+        }
+        .onChange(of: unity.isGameOver) {
+            if unity.isGameOver {
+                unity.isGameOver = false
+                // TODO: リザルトに情報を持たせる必要があるかも（そうするとゲームクリアとゲームオーバーで分岐せずに済む）
+                gameViewModel.gameFinish(gameState: gameState)
             }
         }
         .navigationBarBackButtonHidden()
