@@ -43,18 +43,6 @@ class Unity: SetsNativeState, ObservableObject  {
     }
 
     func start() {
-        // Load native state textures concurrently
-        let loadingGroup = DispatchGroup()
-        DispatchQueue.global().async(group: loadingGroup, execute: { [self] in
-            let url = Bundle.main.url(forResource: "marble", withExtension: "jpg")
-            marbleTexture = marbleTexture ?? url?.loadTexture()
-        })
-        DispatchQueue.global().async(group: loadingGroup, execute: { [self] in
-            let url = Bundle.main.url(forResource: "checkerboard", withExtension: "png")
-            checkerboardTexture = checkerboardTexture ?? url?.loadTexture()
-        })
-        loadingGroup.wait()
-
         /* Unity finishes starting - runEmbedded() returns - before completing
            its first render. If the view is displayed immediately it often shows the
            content leftover from the previous run until Unity renders again and overwrites it.
@@ -104,28 +92,22 @@ class Unity: SetsNativeState, ObservableObject  {
 
     // MARK: Native State
 
-    enum Texture {
-        case none
-        case marble
-        case checkerboard
+    enum UserRole: Int {
+        case host = 0
+        case client1 = 1
+        case client2 = 2
+        case client3 = 3
     }
-    enum LightTemperature: String {
-        case neutral = "#ffffff"
-        case warm = "#ff9100"
-        case cool = "#7dcfff"
-    }
-
-    private var marbleTexture: MTLTexture?
-    private var checkerboardTexture: MTLTexture?
 
     @Published var x: Double = 0 { didSet { stateDidSet() } }
     @Published var y: Double = 0 { didSet { stateDidSet() } }
     @Published var z: Double = 0 { didSet { stateDidSet() } }
+    @Published var userRole: UserRole = .host { didSet { stateDidSet() } }
     
     @Published var isEndGame: Bool = false
 
     private func stateDidSet() {
-        let nativeState = NativeState(x: x, y: y, z: z)
+        let nativeState = NativeState(x: x, y: y, z: z, userRole: Int32(userRole.rawValue))
         setNativeState?(nativeState)
     }
 
