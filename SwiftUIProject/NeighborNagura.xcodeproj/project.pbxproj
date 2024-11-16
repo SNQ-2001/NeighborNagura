@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0FAA22222CE8F9BD001C3549 /* Motion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAA22212CE8F9BD001C3549 /* Motion.swift */; };
 		B50DC73A2B4151780013AB7B /* UIViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50DC7392B4151780013AB7B /* UIViewContainer.swift */; };
 		B53E02802B38E110008D4E31 /* UnityFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B53E027E2B38E110008D4E31 /* UnityFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B53E02832B38E664008D4E31 /* Unity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53E02822B38E664008D4E31 /* Unity.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0FAA22212CE8F9BD001C3549 /* Motion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Motion.swift; sourceTree = "<group>"; };
 		B50DC7392B4151780013AB7B /* UIViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewContainer.swift; sourceTree = "<group>"; };
 		B53E027E2B38E110008D4E31 /* UnityFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UnityFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B53E02822B38E664008D4E31 /* Unity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unity.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				E43BB0602CE8E9FF00ACE788 /* NavigationDestination.swift */,
+				0FAA22212CE8F9BD001C3549 /* Motion.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -233,6 +236,7 @@
 				B50DC73A2B4151780013AB7B /* UIViewContainer.swift in Sources */,
 				B53E02832B38E664008D4E31 /* Unity.swift in Sources */,
 				B57974CB2B38D8CC00A28CAF /* NeighborNaguraApp.swift in Sources */,
+				0FAA22222CE8F9BD001C3549 /* Motion.swift in Sources */,
 				E43BB0612CE8E9FF00ACE788 /* NavigationDestination.swift in Sources */,
 				E43BB05F2CE8E9CC00ACE788 /* GameView.swift in Sources */,
 				E43BB0572CE8E9B700ACE788 /* TitleView.swift in Sources */,
