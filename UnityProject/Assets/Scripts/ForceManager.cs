@@ -7,46 +7,49 @@ using UniRx;
 
 public class ForceManager : MonoBehaviour
 {
-    [SerializeField] private GameObject m_Ball;
+    [SerializeField] private GameObject m_BallPrefab;
+    
+    // [SerializeField] private Button m_ChangeSceneButton;
+    // [SerializeField] private Button m_LeftButton;
+    // [SerializeField] private Button m_RightButton;
+    // [SerializeField] private Button m_UpButton;
+    // [SerializeField] private Button m_DownButton;
+    // [SerializeField] private TextMeshProUGUI m_AccelerationText; 
 
-    [SerializeField] private Button m_ChangeSceneButton;
-    [SerializeField] private Button m_LeftButton;
-    [SerializeField] private Button m_RightButton;
-    [SerializeField] private Button m_UpButton;
-    [SerializeField] private Button m_DownButton;
-    [SerializeField] private TextMeshProUGUI m_AccelerationText; 
-
+    private GameObject m_Ball;
     private Rigidbody m_BallRigidBody;
     private Vector3 m_Acceleration = Vector3.zero;
     
     void Awake()
     {
+        m_Ball = Instantiate(m_BallPrefab);
+        m_Ball.transform.position = Vector3.zero + Vector3.up * 1f;
         m_BallRigidBody = m_Ball.GetComponent<Rigidbody>();
 
-        m_ChangeSceneButton.onClick.AsObservable().Subscribe((_) =>
-        {
-            ChangeScene();
-        }).AddTo(this);
-        
-        m_LeftButton.onClick.AsObservable().Subscribe((_) =>
-        {
-            m_Acceleration -= 0.1f * Vector3.right;
-        }).AddTo(this);
-        
-        m_RightButton.onClick.AsObservable().Subscribe((_) =>
-        {
-            m_Acceleration += 0.1f * Vector3.right;
-        }).AddTo(this);
-        
-        m_UpButton.onClick.AsObservable().Subscribe((_) =>
-        {
-            m_Acceleration += 0.1f * Vector3.forward;
-        }).AddTo(this);
-        
-        m_DownButton.onClick.AsObservable().Subscribe((_) =>
-        {
-            m_Acceleration -= 0.1f * Vector3.forward;
-        }).AddTo(this);
+        // m_ChangeSceneButton.onClick.AsObservable().Subscribe((_) =>
+        // {
+        //     ChangeScene();
+        // }).AddTo(this);
+        //
+        // m_LeftButton.onClick.AsObservable().Subscribe((_) =>
+        // {
+        //     m_Acceleration -= 0.1f * Vector3.right;
+        // }).AddTo(this);
+        //
+        // m_RightButton.onClick.AsObservable().Subscribe((_) =>
+        // {
+        //     m_Acceleration += 0.1f * Vector3.right;
+        // }).AddTo(this);
+        //
+        // m_UpButton.onClick.AsObservable().Subscribe((_) =>
+        // {
+        //     m_Acceleration += 0.1f * Vector3.forward;
+        // }).AddTo(this);
+        //
+        // m_DownButton.onClick.AsObservable().Subscribe((_) =>
+        // {
+        //     m_Acceleration -= 0.1f * Vector3.forward;
+        // }).AddTo(this);
     }
 
     void Update()
@@ -63,14 +66,13 @@ public class ForceManager : MonoBehaviour
             stateVector.y * 20f
         );
         // m_AccelerationText.text = m_Acceleration.ToString();
-        m_AccelerationText.text = stateVector.ToString();
+        // m_AccelerationText.text = stateVector.ToString();
     }
     
     void LateUpdate()
     {
         m_BallRigidBody.AddForce(m_Acceleration);
     }
-
 
     private void ChangeScene()
     {

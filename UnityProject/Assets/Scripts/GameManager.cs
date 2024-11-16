@@ -5,7 +5,9 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private Camera m_Camera;
+    [SerializeField] private ForceManager m_ForceManagerPrefab;
 
+    private ForceManager m_ForceManager;
     private bool m_IsServer;
     
     void Awake()
@@ -23,6 +25,8 @@ public class GameManager : MonoBehaviour
         }
 
         m_Camera.transform.position = CalcCameraPosition(userRole);
+        
+        m_ForceManager = Instantiate(m_ForceManagerPrefab);
     }
 
     private Vector3 CalcCameraPosition(int userRole)
