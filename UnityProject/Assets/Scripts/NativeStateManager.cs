@@ -43,5 +43,6 @@ public static class NativeStateManager
     public static void EndGameScene()
     {
         Debug.Log("EndGameScene");
+        //Swiftのコールバック
     }
 }
