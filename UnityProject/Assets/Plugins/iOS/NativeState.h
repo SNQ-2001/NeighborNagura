@@ -4,6 +4,7 @@ struct NativeState {
     const double x;
     const double y;
     const double z;
+    const int userRole;
 };
 
 typedef void (*SetNativeStateCallback)(struct NativeState nextState);
