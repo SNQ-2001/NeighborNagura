@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private ForceManager m_ForceManagerPrefab;
     [SerializeField] private GameObject m_FirePrefab;
     [SerializeField] private Transform m_FireParent;
+    [SerializeField] private GameObject m_HolePrefab;
     
     [SerializeField] private Button m_ChangeSceneButton;
     // [SerializeField] private Button m_LeftButton;
@@ -23,10 +24,19 @@ public class GameManager : MonoBehaviour
     private ForceManager m_ForceManager;
     private bool m_IsServer;
 
+    private GameObject m_Hole;
     private List<GameObject> m_FireObjects = new List<GameObject>();
     
     void Awake()
     {
+        //適当な場所にホール生成
+        m_Hole = Instantiate(m_HolePrefab);
+        m_Hole.transform.position = new Vector3(
+            Random.Range(-9f, 9f),
+            0.1f,
+            Random.Range(-18.5f, 18.5f)
+        );
+        
         for (int i = 0; i < 44; i++)
         {
             if (i == 0 || i == 43)
