@@ -9,6 +9,7 @@ import SwiftUI
 
 struct GameView: View {
     @StateObject private var unity = Unity.shared
+    @StateObject private var motion = Motion()
     @State private var loading = false
     @Binding var navigatePath: [NavigationDestination]
     var body: some View {
@@ -30,16 +31,33 @@ struct GameView: View {
         }
         .onAppear(perform: handleUnityStart)
         .onDisappear(perform: handleUnityStop)
+        .onChange(of: motion.accelerometerData?.acceleration.x) {
+            if let x = motion.accelerometerData?.acceleration.x {
+                unity.x = x
+            }
+        }
+        .onChange(of: motion.accelerometerData?.acceleration.y) {
+            if let y = motion.accelerometerData?.acceleration.y {
+                unity.y = y
+            }
+        }
+        .onChange(of: motion.accelerometerData?.acceleration.z) {
+            if let z = motion.accelerometerData?.acceleration.z {
+                unity.z = z
+            }
+        }
         .navigationBarBackButtonHidden()
     }
 
     private func handleUnityStart() {
+        motion.startAccelerometerUpdates()
         loading = true
         unity.start()
         loading = false
     }
 
     private func handleUnityStop() {
+        motion.stopUpdates()
         loading = true
         unity.stop()
         loading = false
