@@ -108,12 +108,7 @@ class Unity: SetsNativeState, ObservableObject  {
 
     private func stateDidSet() {
         // x と zを入れ替えている
-        let nativeState = NativeState(
-            x: ballAcceleration.z,
-            y: ballAcceleration.y,
-            z: ballAcceleration.x,
-            userRole: Int32(userRole.rawValue)
-        )
+        let nativeState = NativeState(x: z, y: y, z: x, userRole: Int32(userRole.rawValue))
         setNativeState?(nativeState)
     }
 
