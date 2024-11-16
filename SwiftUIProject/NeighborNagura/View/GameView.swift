@@ -39,9 +39,17 @@ struct GameView: View {
                 unity.z = z
             }
         }
-        .onChange(of: unity.isEndGame) {
-            if unity.isEndGame {
-                unity.isEndGame = false
+        .onChange(of: unity.isGameClear) {
+            if unity.isGameClear {
+                unity.isGameClear = false
+                // TODO: リザルトに情報を持たせる必要があるかも（そうするとゲームクリアとゲームオーバーで分岐せずに済む）
+                navigatePath.append(.result)
+            }
+        }
+        .onChange(of: unity.isGameOver) {
+            if unity.isGameOver {
+                unity.isGameOver = false
+                // TODO: リザルトに情報を持たせる必要があるかも（そうするとゲームクリアとゲームオーバーで分岐せずに済む）
                 navigatePath.append(.result)
             }
         }

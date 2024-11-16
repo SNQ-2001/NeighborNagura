@@ -30,7 +30,10 @@ public static class NativeStateManager
     private static extern void OnSetNativeState(SetNativeStateCallback callback);
     
     [System.Runtime.InteropServices.DllImport("__Internal")]
-    private static extern void EndGame();
+    private static extern void GameClear();
+
+    [System.Runtime.InteropServices.DllImport("__Internal")]
+    private static extern void GameOver();
 
     /* Reverse P/Invoke wrapped method to set state value. iOS is an AOT platform hence the decorator.
        See section on calling managed methods from native code: docs.unity3d.com/Manual/ScriptingRestrictions.html */
@@ -44,10 +47,17 @@ public static class NativeStateManager
         #endif
     }
 
-    public static void EndGameScene()
+    public static void GameClear()
     {
-        Debug.Log("EndGameScene");
+        Debug.Log("GameClear");
         //Swiftのコールバック
-        EndGame();
+        GameClear();
+    }
+
+    public static void GameOver()
+    {
+        Debug.Log("GameOver");
+        //Swiftのコールバック
+        GameOver();
     }
 }

@@ -103,8 +103,8 @@ class Unity: SetsNativeState, ObservableObject  {
     @Published var y: Double = 0 { didSet { stateDidSet() } }
     @Published var z: Double = 0 { didSet { stateDidSet() } }
     @Published var userRole: UserRole = .host { didSet { stateDidSet() } }
-    
-    @Published var isEndGame: Bool = false
+    @Published var isGameClear: Bool = false
+    @Published var isGameOver: Bool = false
 
     private func stateDidSet() {
         // x と zを入れ替えている
@@ -112,8 +112,12 @@ class Unity: SetsNativeState, ObservableObject  {
         setNativeState?(nativeState)
     }
 
-    func endGame() {
-        isEndGame = true
+    func gameClear() {
+        isGameClear = true
+    }
+
+    func gameOver() {
+        isGameOver = true
     }
 
     /* When a Unity script calls the NativeState plugin's OnSetNativeState function this
