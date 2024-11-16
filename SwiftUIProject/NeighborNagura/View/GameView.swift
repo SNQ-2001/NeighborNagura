@@ -15,12 +15,12 @@ struct GameView: View {
         VStack {
             if loading {
                 ProgressView()
-            } else if let UnityContainer = unity.view.flatMap({ UIViewContainer(containee: $0) }) {
-                UnityContainer.ignoresSafeArea()
+            } else if let unityView = unity.view.flatMap({ UIViewContainer(containee: $0) }) {
+                unityView.ignoresSafeArea()
             } else {
                 Text("エラー。発生していたら報告。")
             }
-            
+
             Button {
                 navigatePath.append(.result)
             } label: {
@@ -31,15 +31,13 @@ struct GameView: View {
         .onAppear(perform: handleUnityStart)
         .onDisappear(perform: handleUnityStop)
     }
-    
-    @MainActor
+
     private func handleUnityStart() {
         loading = true
         unity.start()
         loading = false
     }
-    
-    @MainActor
+
     private func handleUnityStop() {
         loading = true
         unity.stop()
