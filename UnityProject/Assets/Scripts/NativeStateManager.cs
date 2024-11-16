@@ -1,6 +1,7 @@
 /* Support init only setters. See section on record
    support: docs.unity3d.com/Manual/CSharpCompiler.html */
 
+using UnityEditor;
 using UnityEngine;
 
 namespace System.Runtime.CompilerServices
@@ -27,6 +28,9 @@ public static class NativeStateManager
        SetNativeStateCallback to C. See section on using delegates: docs.unity3d.com/Manual/PluginsForIOS.html */
     [System.Runtime.InteropServices.DllImport("__Internal")]
     private static extern void OnSetNativeState(SetNativeStateCallback callback);
+    
+    [System.Runtime.InteropServices.DllImport("__Internal")]
+    private static extern void EndGame();
 
     /* Reverse P/Invoke wrapped method to set state value. iOS is an AOT platform hence the decorator.
        See section on calling managed methods from native code: docs.unity3d.com/Manual/ScriptingRestrictions.html */
@@ -44,5 +48,6 @@ public static class NativeStateManager
     {
         Debug.Log("EndGameScene");
         //Swiftのコールバック
+        EndGame();
     }
 }

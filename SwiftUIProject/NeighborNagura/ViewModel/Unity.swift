@@ -121,6 +121,8 @@ class Unity: SetsNativeState, ObservableObject  {
     @Published var x: Double = 0 { didSet { stateDidSet() } }
     @Published var y: Double = 0 { didSet { stateDidSet() } }
     @Published var z: Double = 0 { didSet { stateDidSet() } }
+    
+    @Published var endGame: () -> Void = { }
 
     private func stateDidSet() {
         let nativeState = NativeState(x: x, y: y, z: z)

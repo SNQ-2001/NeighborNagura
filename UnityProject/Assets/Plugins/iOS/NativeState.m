@@ -1,7 +1,6 @@
 #import "NativeState.h"
 
 id<SetsNativeState> nativeStateSetter;
-id<EndGame> changeSceneSetter;
 
 // Called from Swift. Can we hide this from the C# DllImport()?
 void RegisterNativeStateSetter(id<SetsNativeState> setter) {
@@ -15,6 +14,11 @@ void OnSetNativeState(SetNativeStateCallback callback) {
     nativeStateSetter.setNativeState = callback;
 }
 
+void EndGame() {
+    nativeStateSetter.endGame();
+}
+
+/*
 void RegisterChangeSceneSetter(id<EndGame> setter) {
     changeSceneSetter = setter;
 }
@@ -22,3 +26,4 @@ void RegisterChangeSceneSetter(id<EndGame> setter) {
 void OnSetChangeScene(SetChangeSceneCallback callback) {
     changeSceneSetter.changeScene = callback;
 }
+*/
