@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,6 +10,8 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private Camera m_Camera;
     [SerializeField] private ForceManager m_ForceManagerPrefab;
+    [SerializeField] private GameObject m_FirePrefab;
+    [SerializeField] private Transform m_FireParent;
     
     [SerializeField] private Button m_ChangeSceneButton;
     // [SerializeField] private Button m_LeftButton;
@@ -19,9 +22,34 @@ public class GameManager : MonoBehaviour
 
     private ForceManager m_ForceManager;
     private bool m_IsServer;
+
+    private List<GameObject> m_FireObjects = new List<GameObject>();
     
     void Awake()
     {
+        for (int i = 0; i < 44; i++)
+        {
+            if (i == 0 || i == 43)
+            {
+                for (int j = 0; j < 25; j++)
+                {
+                    GameObject tempFire = Instantiate(m_FirePrefab, m_FireParent);
+                    m_FireObjects.Add(tempFire);
+                    tempFire.transform.position = new Vector3(j - 12f, 0.5f, (21f - i) + 0.5f);
+                }
+            }
+            else
+            {
+                GameObject tempFire0 = Instantiate(m_FirePrefab, m_FireParent);
+                tempFire0.transform.position = new Vector3(-12f, 0.5f, (21f - i) + 0.5f);
+                GameObject tempFire1 = Instantiate(m_FirePrefab, m_FireParent);
+                tempFire1.transform.position = new Vector3(12f, 0.5f, (21f - i) + 0.5f);
+                
+                m_FireObjects.Add(tempFire0);
+                m_FireObjects.Add(tempFire1);
+            }
+        }
+        
         NativeState state = NativeStateManager.State;
         int userRole = state.userRole;
 
@@ -63,7 +91,7 @@ public class GameManager : MonoBehaviour
             0f
         );
 
-        float upOffset = 5f;
+        float upOffset = 11f;
 
         if (userRole <= 1)
         {
