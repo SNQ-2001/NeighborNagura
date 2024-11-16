@@ -27,7 +27,7 @@ class GuestViewModel: NSObject, ObservableObject {
     let messageReceiver = PassthroughSubject<P2PMessage, Never>()
     var subscriptions = Set<AnyCancellable>()
     
-    @Published var isGameStart = false
+    @Published var userRole: Unity.UserRole?
     
     init(gameState: GameState) {
         let peer = MCPeerID(displayName: UIDevice.current.name)
@@ -69,7 +69,7 @@ class GuestViewModel: NSObject, ObservableObject {
             }
             gameState.updateBallState(_ballState: message.ballState)
         case .gameStartMessage:
-            isGameStart = true
+            self.userRole = Unity.UserRole(rawValue: Int(_message.jsonData)!)
         case .gameFinishMessage:
             gameState.updatePhase(phase: .finished)
         }

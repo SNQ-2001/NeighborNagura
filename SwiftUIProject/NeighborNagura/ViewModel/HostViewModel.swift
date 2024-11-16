@@ -103,33 +103,20 @@ class HostViewModel: NSObject, ObservableObject {
             return
         }
     }
-    
-    func sendUpdateBallStateMessage(_ballState: BallState) {
-        guard let jsonData = UpdateBallStateMessage(ballState: _ballState).toJson() else {
-            return
-        }
-        guard let messageData = P2PMessage(type: .updateBallStateMessage, jsonData: jsonData).toSendMessage().data(using: .utf8) else {
-            return
-        }
-        
-        // 相手に送信
-        // try? session.send(data, toPeers: [joinedPeer.last!.peerId], with: .reliable)
-        let peerIds = joinedPeers.map { $0.peerId }
-        try? gameState.session?.send(messageData, toPeers: peerIds, with: .reliable)
-        
-        // 自分にも送信
-        messageReceiver.send(P2PMessage(type: .updateBallStateMessage, jsonData: jsonData))
-    }
-    
-    func sendGameStartMessage() {
-        guard let messageData = P2PMessage(type: .gameStartMessage, jsonData: "").toSendMessage().data(using: .utf8) else {
-            return
-        }
 
-        let peerIds = joinedPeers.map { $0.peerId }
-        print("👹 \(peerIds)")
-        print("👹 \(messageData)")
-        try? gameState.session?.send(messageData, toPeers: peerIds, with: .reliable)
+    func sendGameStartMessage() {
+        let peerIds = Array(joinedPeers.map { $0.peerId }.prefix(3))
+        for index in 0..<peerIds.count {
+            guard let messageData = P2PMessage(
+                type: .gameStartMessage,
+                jsonData: index.description
+            ).toSendMessage().data(using: .utf8) else {
+                return
+            }
+            print("👹 \(peerIds[index])")
+            print("👹 \(messageData)")
+            try? gameState.session?.send(messageData, toPeers: [peerIds[index]], with: .reliable)
+        }
     }
 }
 

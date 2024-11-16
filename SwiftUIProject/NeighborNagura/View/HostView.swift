@@ -67,7 +67,7 @@ struct HostView: View {
                         return
                     }
                     hostViewModel.sendGameStartMessage()
-                    navigatePath.append(.game)
+                    navigatePath.append(.game(.host))
                 } label: {
                     Text("ゲームを開始する")
                         .font(Font.custom("Mimi_font-Regular", size: 24))

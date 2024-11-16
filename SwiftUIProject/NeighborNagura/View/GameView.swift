@@ -27,8 +27,11 @@ struct GameView: View {
         .onAppear(perform: handleUnityStart)
         .onDisappear(perform: handleUnityStop)
         .onChange(of: motion.accelerometerData?.acceleration.x) {
-            if let x = motion.accelerometerData?.acceleration.x {
-                unity.x = x
+            switch unity.userRole {
+            case .host:
+                unity.x = motion.accelerometerData?.acceleration.x
+            case .client1, .client2, .client3:
+                return
             }
         }
         .onChange(of: motion.accelerometerData?.acceleration.y) {
