@@ -29,4 +29,17 @@ class GameViewModel: ObservableObject {
         // 相手に送信
         try? session.send(messageData, toPeers: session.connectedPeers, with: .reliable)
     }
+    
+    func gameFinish(gameState: GameState) {
+        gameState.updatePhase(phase: .finished)
+    }
+    
+    private func sendGameFinishMessage(session: MCSession) {
+        guard let messageData = P2PMessage(type: .gameFinishMessage, jsonData: "").toSendMessage().data(using: .utf8) else {
+            return
+        }
+
+        // 相手に送信
+        try? session.send(messageData, toPeers: session.connectedPeers, with: .reliable)
+    }
 }

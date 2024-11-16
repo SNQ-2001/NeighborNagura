@@ -12,6 +12,8 @@ struct GameView: View {
     @StateObject private var motion = Motion()
     @State private var loading = false
     @Binding var navigatePath: [NavigationDestination]
+    @ObservedObject var gameState: GameState
+    @StateObject private var gameViewModel = GameViewModel()
     var body: some View {
         VStack {
             if loading {
@@ -23,6 +25,7 @@ struct GameView: View {
             }
 
             Button {
+                gameViewModel.gameFinish(gameState: gameState)
                 navigatePath.append(.result)
             } label: {
                 Text("ゲームを終了する")
@@ -45,6 +48,9 @@ struct GameView: View {
             if let z = motion.accelerometerData?.acceleration.z {
                 unity.z = z
             }
+        }
+        .onChange(of: gameState.phase) {
+            navigatePath.append(.result)
         }
         .navigationBarBackButtonHidden()
     }

@@ -95,6 +95,10 @@ class HostViewModel: NSObject, ObservableObject {
                 return
             }
             gameState.updateBallState(_ballState: message.ballState)
+        case .gameStartMessage:
+            return
+        case .gameFinishMessage:
+            return
         }
     }
     
@@ -105,7 +109,7 @@ class HostViewModel: NSObject, ObservableObject {
         guard let messageData = P2PMessage(type: .updateBallStateMessage, jsonData: jsonData).toSendMessage().data(using: .utf8) else {
             return
         }
-
+        
         // 相手に送信
         // try? session.send(data, toPeers: [joinedPeer.last!.peerId], with: .reliable)
         let peerIds = joinedPeers.map { $0.peerId }
@@ -113,6 +117,15 @@ class HostViewModel: NSObject, ObservableObject {
         
         // 自分にも送信
         messageReceiver.send(P2PMessage(type: .updateBallStateMessage, jsonData: jsonData))
+    }
+    
+    func sendGameStartMessage() {
+        guard let messageData = P2PMessage(type: .gameStartMessage, jsonData: "").toSendMessage().data(using: .utf8) else {
+            return
+        }
+
+        let peerIds = joinedPeers.map { $0.peerId }
+        try? gameState.session?.send(messageData, toPeers: peerIds, with: .reliable)
     }
 }
 

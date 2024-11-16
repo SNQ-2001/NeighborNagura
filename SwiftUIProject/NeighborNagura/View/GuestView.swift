@@ -49,5 +49,10 @@ struct GuestView: View {
                 })
             )
         })
+        .onChange(of: guestViewModel.isGameStart) {
+            if (guestViewModel.isGameStart) {
+                navigatePath.append(.game)
+            }
+        }
     }
 }

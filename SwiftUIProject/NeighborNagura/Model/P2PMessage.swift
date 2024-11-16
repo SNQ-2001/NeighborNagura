@@ -9,6 +9,8 @@ import Foundation
 
 enum MessageType: Int, Codable {
     case updateBallStateMessage = 0
+    case gameStartMessage = 1
+    case gameFinishMessage = 2
 }
 
 class P2PMessage: Codable {

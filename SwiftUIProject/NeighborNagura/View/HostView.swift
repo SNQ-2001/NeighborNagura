@@ -46,9 +46,11 @@ struct HostView: View {
                 // メンバーリスト
                 ScrollView {
                     VStack(spacing: 15) {
-                        let members = hostViewModel.peers.map({Member(name: $0.peerId.displayName)})
-                        ForEach(members, id: \.name) { member in
-                            MemberView(member: member) // コンポーネントを利用
+                        ForEach(hostViewModel.peers, id: \.peerId) { member in
+                            MemberView(member: Member(name: member.peerId.displayName)) // コンポーネントを利用
+                                .onTapGesture {
+                                    hostViewModel.invite(_selectedPeer: PeerDevice(peerId: member.peerId))
+                                }
                         }
                     }
                 }
