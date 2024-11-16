@@ -122,11 +122,15 @@ class Unity: SetsNativeState, ObservableObject  {
     @Published var y: Double = 0 { didSet { stateDidSet() } }
     @Published var z: Double = 0 { didSet { stateDidSet() } }
     
-    @Published var endGame: () -> Void = { }
+    @Published var isEndGame: Bool = false
 
     private func stateDidSet() {
         let nativeState = NativeState(x: x, y: y, z: z)
         setNativeState?(nativeState)
+    }
+
+    func endGame() {
+        isEndGame = true
     }
 
     /* When a Unity script calls the NativeState plugin's OnSetNativeState function this
@@ -134,8 +138,6 @@ class Unity: SetsNativeState, ObservableObject  {
        C# delegate. See section on using delegates: docs.unity3d.com/Manual/PluginsForIOS.html */
     var setNativeState: SetNativeStateCallback? {
         didSet {
-            print("@@ setNativeState:", setNativeState)
-            
             if setNativeState != nil {
                 /* We can now send state to Unity. We should assume
                    Unity needs it immediately, so set the current state now. */
