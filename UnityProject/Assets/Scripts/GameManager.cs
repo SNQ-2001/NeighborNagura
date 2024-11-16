@@ -1,11 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private Camera m_Camera;
     [SerializeField] private ForceManager m_ForceManagerPrefab;
+    
+    [SerializeField] private Button m_ChangeSceneButton;
+    // [SerializeField] private Button m_LeftButton;
+    // [SerializeField] private Button m_RightButton;
+    // [SerializeField] private Button m_UpButton;
+    // [SerializeField] private Button m_DownButton;
+    [SerializeField] private TextMeshProUGUI m_AccelerationText; 
 
     private ForceManager m_ForceManager;
     private bool m_IsServer;
@@ -26,6 +35,14 @@ public class GameManager : MonoBehaviour
 
         m_Camera.transform.position = CalcCameraPosition(userRole);
         
+        Vector3 stateVector = new Vector3(
+            (float)state.x,
+            (float)state.y,
+            (float)state.z
+        );
+        
+        m_AccelerationText.text = stateVector.ToString();
+        
         m_ForceManager = Instantiate(m_ForceManagerPrefab);
     }
 
@@ -37,7 +54,7 @@ public class GameManager : MonoBehaviour
             0f
         );
 
-        float upOffset = 11f;
+        float upOffset = 5f;
 
         if (userRole <= 1)
         {

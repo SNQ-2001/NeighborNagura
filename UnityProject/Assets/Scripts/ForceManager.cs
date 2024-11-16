@@ -8,13 +8,6 @@ using UniRx;
 public class ForceManager : MonoBehaviour
 {
     [SerializeField] private GameObject m_BallPrefab;
-    
-    // [SerializeField] private Button m_ChangeSceneButton;
-    // [SerializeField] private Button m_LeftButton;
-    // [SerializeField] private Button m_RightButton;
-    // [SerializeField] private Button m_UpButton;
-    // [SerializeField] private Button m_DownButton;
-    // [SerializeField] private TextMeshProUGUI m_AccelerationText; 
 
     private GameObject m_Ball;
     private Rigidbody m_BallRigidBody;
