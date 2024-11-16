@@ -13,4 +13,5 @@ enum NavigationDestination: Hashable {
     case guest
     case game
     case result
+    case treasure
 }
