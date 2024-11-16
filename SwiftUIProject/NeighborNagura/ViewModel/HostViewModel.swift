@@ -67,12 +67,14 @@ class HostViewModel: NSObject, ObservableObject {
     }
     
     // ② 招待した相手が入っていたら，この関数を使って自分も部屋に入ったことにする
-    func join() {
+    func join() -> Bool {
+        print("👹 \(selectedPeers),,, \(isParticipantsJoined())")
         if !isParticipantsJoined() {
-            return
+            return false
         }
         
         joinedPeers = selectedPeers
+        return true
     }
     
     func isParticipantsJoined() -> Bool {
@@ -125,6 +127,8 @@ class HostViewModel: NSObject, ObservableObject {
         }
 
         let peerIds = joinedPeers.map { $0.peerId }
+        print("👹 \(peerIds)")
+        print("👹 \(messageData)")
         try? gameState.session?.send(messageData, toPeers: peerIds, with: .reliable)
     }
 }

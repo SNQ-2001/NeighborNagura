@@ -26,7 +26,6 @@ struct GameView: View {
             
             Button {
                 gameViewModel.gameFinish(gameState: gameState)
-                navigatePath.append(.result)
             } label: {
                 Text("ゲームを終了する")
             }

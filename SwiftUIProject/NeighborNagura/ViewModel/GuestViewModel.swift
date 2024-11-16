@@ -61,6 +61,7 @@ class GuestViewModel: NSObject, ObservableObject {
     }
     
     private func receiveMessage(_message: P2PMessage) {
+        print("👹 \(_message)")
         switch _message.type {
         case .updateBallStateMessage:
             guard let message = UpdateBallStateMessage.fromJson(jsonString: _message.jsonData) else {

@@ -11,6 +11,7 @@ struct HostView: View {
     @Binding var navigatePath: [NavigationDestination]
     @ObservedObject var gameState: GameState
     @StateObject private var hostViewModel: HostViewModel
+    @State var showNotPreparedAleart = false
     
     init(navigatePath: Binding<[NavigationDestination]>, gameState: GameState) {
         self._navigatePath = navigatePath
@@ -61,6 +62,10 @@ struct HostView: View {
 
                 // ボタン
                 Button {
+                    if (!hostViewModel.join()) {
+                        showNotPreparedAleart = true
+                        return
+                    }
                     hostViewModel.sendGameStartMessage()
                     navigatePath.append(.game)
                 } label: {
@@ -77,5 +82,16 @@ struct HostView: View {
             }
             .padding()
         }
+        .alert(isPresented: $showNotPreparedAleart, content: {
+            Alert(
+                title: Text("まだ準備できてないよん"),
+                primaryButton: .default(Text("わかった"), action: {
+                    showNotPreparedAleart = false
+                }),
+                secondaryButton: .cancel(Text("ちょっと待つよ"), action: {
+                    showNotPreparedAleart = false
+                })
+            )
+        })
     }
 }
