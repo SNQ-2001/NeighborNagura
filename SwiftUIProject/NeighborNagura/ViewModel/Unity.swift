@@ -121,14 +121,16 @@ class Unity: SetsNativeState, ObservableObject  {
     @Published var x: Double = 0 { didSet { stateDidSet() } }
     @Published var y: Double = 0 { didSet { stateDidSet() } }
     @Published var z: Double = 0 { didSet { stateDidSet() } }
-    
-    @Published var endGame: () -> Void = { }
 
     private func stateDidSet() {
         let nativeState = NativeState(x: x, y: y, z: z)
         setNativeState?(nativeState)
     }
 
+    func endGame() {
+        
+    }
+    
     /* When a Unity script calls the NativeState plugin's OnSetNativeState function this
        closure will be set to a C function pointer that was marshaled from a corresponding
        C# delegate. See section on using delegates: docs.unity3d.com/Manual/PluginsForIOS.html */

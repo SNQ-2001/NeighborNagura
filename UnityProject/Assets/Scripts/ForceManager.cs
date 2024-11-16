@@ -58,6 +58,11 @@ public class ForceManager : MonoBehaviour
             (float)state.y,
             (float)state.z
         );
+        m_Acceleration = new Vector3(
+            stateVector.x * 20f,
+            0f,
+            stateVector.y * 20f
+            );
         // m_AccelerationText.text = m_Acceleration.ToString();
         m_AccelerationText.text = stateVector.ToString();
     }
