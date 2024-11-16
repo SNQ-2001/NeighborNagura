@@ -21,13 +21,6 @@ struct GameView: View {
             } else {
                 Text("エラー。発生していたら報告。")
             }
-
-            Button {
-                navigatePath.append(.result)
-            } label: {
-                Text("ゲームを終了する")
-            }
-            .buttonStyle(.borderedProminent)
         }
         .onAppear(perform: handleUnityStart)
         .onDisappear(perform: handleUnityStop)
@@ -44,6 +37,12 @@ struct GameView: View {
         .onChange(of: motion.accelerometerData?.acceleration.z) {
             if let z = motion.accelerometerData?.acceleration.z {
                 unity.z = z
+            }
+        }
+        .onChange(of: unity.isEndGame) {
+            if unity.isEndGame {
+                unity.isEndGame = false
+                navigatePath.append(.result)
             }
         }
         .navigationBarBackButtonHidden()
