@@ -69,7 +69,3 @@ struct TitleView: View {
         }
     }
 }
-
-#Preview {
-    TitleView()
-}

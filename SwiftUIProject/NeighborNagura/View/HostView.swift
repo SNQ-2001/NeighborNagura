@@ -61,7 +61,3 @@ struct HostView: View {
         }
     }
 }
-
-#Preview {
-    HostView(navigatePath: .constant([]))
-}
