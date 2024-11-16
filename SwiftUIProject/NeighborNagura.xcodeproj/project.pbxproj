@@ -3,10 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ABB692272CE8F69500F26ABB /* character_yusha_woman_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = ABB692262CE8F69500F26ABB /* character_yusha_woman_blue.png */; };
+		0FAA22222CE8F9BD001C3549 /* Motion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAA22212CE8F9BD001C3549 /* Motion.swift */; };
 		B50DC73A2B4151780013AB7B /* UIViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50DC7392B4151780013AB7B /* UIViewContainer.swift */; };
 		B53E02802B38E110008D4E31 /* UnityFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B53E027E2B38E110008D4E31 /* UnityFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B53E02832B38E664008D4E31 /* Unity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53E02822B38E664008D4E31 /* Unity.swift */; };
@@ -37,6 +39,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		ABB692262CE8F69500F26ABB /* character_yusha_woman_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = character_yusha_woman_blue.png; sourceTree = "<group>"; };
+		0FAA22212CE8F9BD001C3549 /* Motion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Motion.swift; sourceTree = "<group>"; };
 		B50DC7392B4151780013AB7B /* UIViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewContainer.swift; sourceTree = "<group>"; };
 		B53E027E2B38E110008D4E31 /* UnityFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UnityFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B53E02822B38E664008D4E31 /* Unity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unity.swift; sourceTree = "<group>"; };
@@ -53,6 +57,10 @@
 		E43BB0622CE8EA1F00ACE788 /* Mimi_font-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Mimi_font-Regular.ttf"; sourceTree = "<group>"; };
 		E43BB0642CE8EA2E00ACE788 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		ABB692222CE8F5D500F26ABB /* Components */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Components; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		B57974C42B38D8CC00A28CAF /* Frameworks */ = {
@@ -93,6 +101,7 @@
 		B57974C92B38D8CC00A28CAF /* NeighborNagura */ = {
 			isa = PBXGroup;
 			children = (
+				ABB692222CE8F5D500F26ABB /* Components */,
 				E43BB0542CE8E96C00ACE788 /* Application */,
 				E43BB0522CE8E94300ACE788 /* View */,
 				E43BB0552CE8E97A00ACE788 /* ViewModel */,
@@ -114,6 +123,7 @@
 		E43BB0512CE8E93C00ACE788 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				ABB692262CE8F69500F26ABB /* character_yusha_woman_blue.png */,
 				E43BB0642CE8EA2E00ACE788 /* Info.plist */,
 				B57974CE2B38D8CD00A28CAF /* Assets.xcassets */,
 				E43BB0622CE8EA1F00ACE788 /* Mimi_font-Regular.ttf */,
@@ -174,6 +184,9 @@
 			);
 			dependencies = (
 			);
+			fileSystemSynchronizedGroups = (
+				ABB692222CE8F5D500F26ABB /* Components */,
+			);
 			name = NeighborNagura;
 			productName = UnitySwiftUI;
 			productReference = B57974C72B38D8CC00A28CAF /* NeighborNagura.app */;
@@ -217,6 +230,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABB692272CE8F69500F26ABB /* character_yusha_woman_blue.png in Resources */,
 				B57974D22B38D8CD00A28CAF /* Preview Assets.xcassets in Resources */,
 				B57974CF2B38D8CD00A28CAF /* Assets.xcassets in Resources */,
 				E43BB0632CE8EA1F00ACE788 /* Mimi_font-Regular.ttf in Resources */,
