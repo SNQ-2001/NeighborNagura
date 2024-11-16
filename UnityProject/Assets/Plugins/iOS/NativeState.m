@@ -14,6 +14,10 @@ void OnSetNativeState(SetNativeStateCallback callback) {
     nativeStateSetter.setNativeState = callback;
 }
 
-void EndGame() {
-    [nativeStateSetter endGame];
+void GameClear() {
+    [nativeStateSetter gameClear];
+}
+
+void GameOver() {
+    [nativeStateSetter gameOver];
 }

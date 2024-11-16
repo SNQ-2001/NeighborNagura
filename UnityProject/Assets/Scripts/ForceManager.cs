@@ -26,7 +26,7 @@ public class ForceManager : MonoBehaviour
 
         m_ChangeSceneButton.onClick.AsObservable().Subscribe((_) =>
         {
-            ChangeScene();
+            GameClear();
         }).AddTo(this);
         
         m_LeftButton.onClick.AsObservable().Subscribe((_) =>
@@ -73,9 +73,15 @@ public class ForceManager : MonoBehaviour
     }
 
 
-    private void ChangeScene()
+    private void GameClear()
     {
         //Swift側の関数を呼び出す
-        NativeStateManager.EndGameScene();
+        NativeStateManager.GameClear();
+    }
+
+        private void GameOver()
+    {
+        //Swift側の関数を呼び出す
+        NativeStateManager.GameOver();
     }
 }
