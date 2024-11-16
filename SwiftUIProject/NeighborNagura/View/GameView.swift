@@ -30,6 +30,7 @@ struct GameView: View {
         }
         .onAppear(perform: handleUnityStart)
         .onDisappear(perform: handleUnityStop)
+        .navigationBarBackButtonHidden()
     }
 
     private func handleUnityStart() {

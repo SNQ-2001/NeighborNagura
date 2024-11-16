@@ -21,6 +21,7 @@ struct ResultView: View {
                 Text("タイトルに戻る")
             }
         }
+        .navigationBarBackButtonHidden()
     }
 }
 
