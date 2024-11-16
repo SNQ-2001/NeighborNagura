@@ -15,15 +15,5 @@ void OnSetNativeState(SetNativeStateCallback callback) {
 }
 
 void EndGame() {
-    nativeStateSetter.endGame();
+    [nativeStateSetter endGame];
 }
-
-/*
-void RegisterChangeSceneSetter(id<EndGame> setter) {
-    changeSceneSetter = setter;
-}
-
-void OnSetChangeScene(SetChangeSceneCallback callback) {
-    changeSceneSetter.changeScene = callback;
-}
-*/

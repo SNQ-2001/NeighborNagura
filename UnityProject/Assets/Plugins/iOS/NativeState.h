@@ -16,12 +16,5 @@ typedef void (*SetNativeStateCallback)(struct NativeState nextState);
 - (void)endGame;
 @end
 
-/*
-@protocol EndGame
-@property (nullable) ChangeSceneCallback changeScene;
-@end
-*/
-
 __attribute__ ((visibility("default")))
 void RegisterNativeStateSetter(id<SetsNativeState> _Nonnull setter);
-/*void RegisterChangeSceneSetter(id<EndGame> _Nonnull setter);*/
