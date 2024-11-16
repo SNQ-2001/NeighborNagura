@@ -70,6 +70,15 @@ class GuestViewModel: NSObject, ObservableObject {
             gameState.updateBallState(_ballState: message.ballState)
         case .gameStartMessage:
             self.userRole = Unity.UserRole(rawValue: Int(_message.jsonData)!)
+        case .gameBallAccelerationMessage:
+            let decoder = JSONDecoder()
+            guard
+                let jsonData = _message.jsonData.data(using: .utf8),
+                let ballAcceleration = try? decoder.decode(BallAcceleration.self, from: jsonData)
+            else {
+                return
+            }
+            gameState.ballAcceleration = ballAcceleration
         case .gameFinishMessage:
             gameState.updatePhase(phase: .finished)
         }

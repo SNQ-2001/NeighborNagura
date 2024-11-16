@@ -8,24 +8,22 @@
 import MultipeerConnectivity
 import SwiftUI
 
-class GameViewModel: ObservableObject {
-    func updateBallState(gameState: GameState, newBallState: BallState) {
-        guard gameState.ballState != nil && gameState.session != nil else {
-            print("Failed to update ball state: session or ballState is nil")
+final class GameViewModel: ObservableObject {
+    func sendGameBallAccelerationMessage(session: MCSession, ballAcceleration: BallAcceleration) {
+        let ballAcceleration = BallAcceleration(x: 0, y: 0, z: 0)
+        let encode = JSONEncoder()
+        guard
+            let encodedBallAcceleration = try? encode.encode(ballAcceleration),
+            let jsonString = String(data: encodedBallAcceleration, encoding: .utf8)
+        else {
             return
         }
-        gameState.updateBallState(_ballState: newBallState)
-        sendUpdateBallStateMessage(session: gameState.session!, _ballState: newBallState)
-    }
-    
-    private func sendUpdateBallStateMessage(session: MCSession, _ballState: BallState) {
-        guard let jsonData = UpdateBallStateMessage(ballState: _ballState).toJson() else {
+        guard let messageData = P2PMessage(
+            type: .gameBallAccelerationMessage,
+            jsonData: jsonString
+        ).toSendMessage().data(using: .utf8) else {
             return
         }
-        guard let messageData = P2PMessage(type: .updateBallStateMessage, jsonData: jsonData).toSendMessage().data(using: .utf8) else {
-            return
-        }
-
         // 相手に送信
         try? session.send(messageData, toPeers: session.connectedPeers, with: .reliable)
     }
@@ -39,7 +37,6 @@ class GameViewModel: ObservableObject {
         guard let messageData = P2PMessage(type: .gameFinishMessage, jsonData: "").toSendMessage().data(using: .utf8) else {
             return
         }
-
         // 相手に送信
         try? session.send(messageData, toPeers: session.connectedPeers, with: .reliable)
     }

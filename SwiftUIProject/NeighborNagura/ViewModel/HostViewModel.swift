@@ -42,13 +42,6 @@ class HostViewModel: NSObject, ObservableObject {
         advertiser.delegate = self
         gameState.session!.delegate = self
         
-        messageReceiver
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] in
-                self?.receiveMessage(_message: $0)
-            }
-            .store(in: &subscriptions)
-        
         browser.startBrowsingForPeers()
     }
     
@@ -87,21 +80,6 @@ class HostViewModel: NSObject, ObservableObject {
         }
         
         return true
-    }
-    
-    private func receiveMessage(_message: P2PMessage) {
-        switch _message.type {
-        case .updateBallStateMessage:
-            guard let message = UpdateBallStateMessage.fromJson(jsonString: _message.jsonData) else {
-                print("Failed to decode BallState from JSON: \(_message.jsonData)")
-                return
-            }
-            gameState.updateBallState(_ballState: message.ballState)
-        case .gameStartMessage:
-            return
-        case .gameFinishMessage:
-            return
-        }
     }
 
     func sendGameStartMessage() {
