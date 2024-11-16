@@ -14,25 +14,15 @@ struct TitleView: View {
     var body: some View {
         NavigationStack(path: $navigatePath) {
             ZStack {
-                // 背景画像の配置
-                if let imagePath = Bundle.main.path(forResource: "top-page-image", ofType: "png"),
-                   let uiImage = UIImage(contentsOfFile: imagePath) {
-                    Image(uiImage: uiImage)
-                        .resizable()
-                        .scaledToFill() // 比率を維持して拡大縮小
-                        .frame(width: UIScreen.main.bounds.width * 1.2, // サイズ調整
-                               height: UIScreen.main.bounds.height * 1.2)
-                        .scaleEffect(imageScale) // 拡大率を適用
-                        .clipped() // 外にはみ出る部分をカット
-                        .position(x: UIScreen.main.bounds.width / 2, // 真ん中に配置
-                                  y: UIScreen.main.bounds.height / 2 - 50)
-                } else {
-                    // 画像が見つからない場合のプレースホルダー
-                    Color.red
-                        .overlay(Text("画像が見つかりません")
-                            .foregroundColor(.white))
-                        .ignoresSafeArea()
-                }
+                Image(.topPage)
+                    .resizable()
+                    .scaledToFill() // 比率を維持して拡大縮小
+                    .frame(width: UIScreen.main.bounds.width * 1.2, // サイズ調整
+                           height: UIScreen.main.bounds.height * 1.2)
+                    .scaleEffect(imageScale) // 拡大率を適用
+                    .clipped() // 外にはみ出る部分をカット
+                    .position(x: UIScreen.main.bounds.width / 2, // 真ん中に配置
+                              y: UIScreen.main.bounds.height / 2 - 50)
 
                 VStack(spacing: 30) {
                     Text("ハラハラたいぞうゲーム")

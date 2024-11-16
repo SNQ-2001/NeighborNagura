@@ -11,7 +11,6 @@
 		B53E02802B38E110008D4E31 /* UnityFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B53E027E2B38E110008D4E31 /* UnityFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B53E02832B38E664008D4E31 /* Unity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53E02822B38E664008D4E31 /* Unity.swift */; };
 		B57974CB2B38D8CC00A28CAF /* NeighborNaguraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57974CA2B38D8CC00A28CAF /* NeighborNaguraApp.swift */; };
-		B57974CD2B38D8CC00A28CAF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57974CC2B38D8CC00A28CAF /* ContentView.swift */; };
 		B57974CF2B38D8CD00A28CAF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B57974CE2B38D8CD00A28CAF /* Assets.xcassets */; };
 		B57974D22B38D8CD00A28CAF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B57974D12B38D8CD00A28CAF /* Preview Assets.xcassets */; };
 		E43BB0572CE8E9B700ACE788 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43BB0562CE8E9B700ACE788 /* TitleView.swift */; };
@@ -43,7 +42,6 @@
 		B53E02822B38E664008D4E31 /* Unity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unity.swift; sourceTree = "<group>"; };
 		B57974C72B38D8CC00A28CAF /* NeighborNagura.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NeighborNagura.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B57974CA2B38D8CC00A28CAF /* NeighborNaguraApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeighborNaguraApp.swift; sourceTree = "<group>"; };
-		B57974CC2B38D8CC00A28CAF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B57974CE2B38D8CD00A28CAF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B57974D12B38D8CD00A28CAF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E43BB0562CE8E9B700ACE788 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
@@ -126,7 +124,6 @@
 		E43BB0522CE8E94300ACE788 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B57974CC2B38D8CC00A28CAF /* ContentView.swift */,
 				B50DC7392B4151780013AB7B /* UIViewContainer.swift */,
 				E43BB0562CE8E9B700ACE788 /* TitleView.swift */,
 				E43BB0582CE8E9BC00ACE788 /* ResultView.swift */,
@@ -234,7 +231,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B50DC73A2B4151780013AB7B /* UIViewContainer.swift in Sources */,
-				B57974CD2B38D8CC00A28CAF /* ContentView.swift in Sources */,
 				B53E02832B38E664008D4E31 /* Unity.swift in Sources */,
 				B57974CB2B38D8CC00A28CAF /* NeighborNaguraApp.swift in Sources */,
 				E43BB0612CE8E9FF00ACE788 /* NavigationDestination.swift in Sources */,

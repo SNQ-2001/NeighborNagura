@@ -11,10 +11,7 @@ import SwiftUI
 struct NeighborNaguraApp: App {
     var body: some Scene {
         WindowGroup {
-            ZStack(content: {
-                Color.gray.ignoresSafeArea()
-                ContentView()
-            })
+            TitleView()
         }
     }
 }
