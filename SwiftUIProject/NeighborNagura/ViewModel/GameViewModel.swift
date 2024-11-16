@@ -32,6 +32,7 @@ class GameViewModel: ObservableObject {
     
     func gameFinish(gameState: GameState) {
         gameState.updatePhase(phase: .finished)
+        sendGameFinishMessage(session: gameState.session!)
     }
     
     private func sendGameFinishMessage(session: MCSession) {

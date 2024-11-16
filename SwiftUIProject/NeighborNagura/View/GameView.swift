@@ -23,7 +23,7 @@ struct GameView: View {
             } else {
                 Text("エラー。発生していたら報告。")
             }
-
+            
             Button {
                 gameViewModel.gameFinish(gameState: gameState)
                 navigatePath.append(.result)
@@ -50,18 +50,20 @@ struct GameView: View {
             }
         }
         .onChange(of: gameState.phase) {
-            navigatePath.append(.result)
+            if (gameState.phase == .finished) {
+                navigatePath.append(.result)
+            }
         }
         .navigationBarBackButtonHidden()
     }
-
+    
     private func handleUnityStart() {
         motion.startAccelerometerUpdates()
         loading = true
         unity.start()
         loading = false
     }
-
+    
     private func handleUnityStop() {
         motion.stopUpdates()
         loading = true

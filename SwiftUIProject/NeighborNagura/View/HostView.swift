@@ -61,6 +61,7 @@ struct HostView: View {
 
                 // ボタン
                 Button {
+                    hostViewModel.sendGameStartMessage()
                     navigatePath.append(.game)
                 } label: {
                     Text("ゲームを開始する")
