@@ -103,16 +103,21 @@ class Unity: SetsNativeState, ObservableObject  {
     @Published var y: Double = 0 { didSet { stateDidSet() } }
     @Published var z: Double = 0 { didSet { stateDidSet() } }
     @Published var userRole: UserRole = .host { didSet { stateDidSet() } }
-    
-    @Published var isEndGame: Bool = false
+    @Published var isGameClear: Bool = false
+    @Published var isGameOver: Bool = false
 
     private func stateDidSet() {
-        let nativeState = NativeState(x: x, y: y, z: z, userRole: Int32(userRole.rawValue))
+        // x と zを入れ替えている
+        let nativeState = NativeState(x: z, y: y, z: x, userRole: Int32(userRole.rawValue))
         setNativeState?(nativeState)
     }
 
-    func endGame() {
-        isEndGame = true
+    func gameClear() {
+        isGameClear = true
+    }
+
+    func gameOver() {
+        isGameOver = true
     }
 
     /* When a Unity script calls the NativeState plugin's OnSetNativeState function this

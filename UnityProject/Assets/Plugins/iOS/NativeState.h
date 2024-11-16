@@ -14,7 +14,8 @@ typedef void (*SetNativeStateCallback)(struct NativeState nextState);
 /* Function pointer that will be used to send state from Swift to Unity.
  Encapsulation within a protocol lets us take advantage of Swift's didSet property observer. */
 @property (nullable) SetNativeStateCallback setNativeState;
-- (void)endGame;
+- (void)gameClear;
+- (void)gameOver;
 @end
 
 __attribute__ ((visibility("default")))

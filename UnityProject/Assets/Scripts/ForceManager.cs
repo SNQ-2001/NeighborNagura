@@ -7,47 +7,42 @@ using UniRx;
 
 public class ForceManager : MonoBehaviour
 {
-    [SerializeField] private GameObject m_Ball;
+    [SerializeField] private GameObject m_BallPrefab;
 
-    [SerializeField] private Button m_ChangeSceneButton;
-    [SerializeField] private Button m_LeftButton;
-    [SerializeField] private Button m_RightButton;
-    [SerializeField] private Button m_UpButton;
-    [SerializeField] private Button m_DownButton;
-    [SerializeField] private TextMeshProUGUI m_AccelerationText; 
-
+    private GameObject m_Ball;
     private Rigidbody m_BallRigidBody;
     private Vector3 m_Acceleration = Vector3.zero;
     
-    // ReSharper disable Unity.PerformanceAnalysis
     void Awake()
     {
+        m_Ball = Instantiate(m_BallPrefab);
+        m_Ball.transform.position = Vector3.zero + Vector3.up * 1f;
         m_BallRigidBody = m_Ball.GetComponent<Rigidbody>();
 
-        m_ChangeSceneButton.onClick.AsObservable().Subscribe((_) =>
-        {
-            ChangeScene();
-        }).AddTo(this);
-        
-        m_LeftButton.onClick.AsObservable().Subscribe((_) =>
-        {
-            m_Acceleration -= 0.1f * Vector3.right;
-        }).AddTo(this);
-        
-        m_RightButton.onClick.AsObservable().Subscribe((_) =>
-        {
-            m_Acceleration += 0.1f * Vector3.right;
-        }).AddTo(this);
-        
-        m_UpButton.onClick.AsObservable().Subscribe((_) =>
-        {
-            m_Acceleration += 0.1f * Vector3.forward;
-        }).AddTo(this);
-        
-        m_DownButton.onClick.AsObservable().Subscribe((_) =>
-        {
-            m_Acceleration -= 0.1f * Vector3.forward;
-        }).AddTo(this);
+        // m_ChangeSceneButton.onClick.AsObservable().Subscribe((_) =>
+        // {
+        //     ChangeScene();
+        // }).AddTo(this);
+        //
+        // m_LeftButton.onClick.AsObservable().Subscribe((_) =>
+        // {
+        //     m_Acceleration -= 0.1f * Vector3.right;
+        // }).AddTo(this);
+        //
+        // m_RightButton.onClick.AsObservable().Subscribe((_) =>
+        // {
+        //     m_Acceleration += 0.1f * Vector3.right;
+        // }).AddTo(this);
+        //
+        // m_UpButton.onClick.AsObservable().Subscribe((_) =>
+        // {
+        //     m_Acceleration += 0.1f * Vector3.forward;
+        // }).AddTo(this);
+        //
+        // m_DownButton.onClick.AsObservable().Subscribe((_) =>
+        // {
+        //     m_Acceleration -= 0.1f * Vector3.forward;
+        // }).AddTo(this);
     }
 
     void Update()
@@ -62,9 +57,9 @@ public class ForceManager : MonoBehaviour
             stateVector.x * 20f,
             0f,
             stateVector.y * 20f
-            );
+        );
         // m_AccelerationText.text = m_Acceleration.ToString();
-        m_AccelerationText.text = stateVector.ToString();
+        // m_AccelerationText.text = stateVector.ToString();
     }
     
     void LateUpdate()
@@ -73,9 +68,15 @@ public class ForceManager : MonoBehaviour
     }
 
 
-    private void ChangeScene()
+    private void GameClear()
     {
         //Swift側の関数を呼び出す
-        NativeStateManager.EndGameScene();
+        NativeStateManager.GameClearUnity();
+    }
+
+    private void GameOver()
+    {
+        //Swift側の関数を呼び出す
+        NativeStateManager.GameOverUnity();
     }
 }
