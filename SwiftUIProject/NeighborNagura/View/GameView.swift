@@ -41,6 +41,7 @@ struct GameView: View {
         }
         .onChange(of: unity.isEndGame) {
             if unity.isEndGame {
+                unity.isEndGame = false
                 navigatePath.append(.result)
             }
         }
