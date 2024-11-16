@@ -25,25 +25,36 @@ struct TitleView: View {
                               y: UIScreen.main.bounds.height / 2 - 50)
 
                 VStack(spacing: 30) {
+                    // タイトルを黒文字に変更
                     Text("ハラハラたいぞうゲーム")
                         .font(Font.custom("Mimi_font-Regular", size: 42))
-                        .foregroundColor(.white)
+                        .foregroundColor(.black) // 黒文字に設定
 
+                    // ホストボタン
                     Button {
                         navigatePath.append(.host)
                     } label: {
                         Text("ホスト")
-                        .font(Font.custom("Mimi_font-Regular", size: 32))
+                            .font(Font.custom("Mimi_font-Regular", size: 32))
+                            .foregroundColor(.white) // 白文字
+                            .padding()
+                            .background(Color.black) // 黒背景
+                            .cornerRadius(10) // 角丸
+                            .padding(.horizontal, 20) // 横方向の余白
                     }
-                    .buttonStyle(.borderedProminent)
 
+                    // ゲストボタン
                     Button {
                         navigatePath.append(.guest)
                     } label: {
                         Text("ゲスト")
-                        .font(Font.custom("Mimi_font-Regular", size: 32))
+                            .font(Font.custom("Mimi_font-Regular", size: 32))
+                            .foregroundColor(.white) // 白文字
+                            .padding()
+                            .background(Color.black) // 黒背景
+                            .cornerRadius(10) // 角丸
+                            .padding(.horizontal, 20) // 横方向の余白
                     }
-                    .buttonStyle(.borderedProminent)
                 }
                 .padding() // VStack全体を少し余裕を持たせるパディング
             }
