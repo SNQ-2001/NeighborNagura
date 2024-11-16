@@ -67,9 +67,16 @@ public class ForceManager : MonoBehaviour
         m_BallRigidBody.AddForce(m_Acceleration);
     }
 
-    private void ChangeScene()
+
+    private void GameClear()
     {
         //Swift側の関数を呼び出す
-        NativeStateManager.EndGameScene();
+        NativeStateManager.GameClear();
+    }
+
+        private void GameOver()
+    {
+        //Swift側の関数を呼び出す
+        NativeStateManager.GameOver();
     }
 }

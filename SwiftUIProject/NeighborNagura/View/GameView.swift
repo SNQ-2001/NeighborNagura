@@ -12,6 +12,8 @@ struct GameView: View {
     @StateObject private var motion = Motion()
     @State private var loading = false
     @Binding var navigatePath: [NavigationDestination]
+    @ObservedObject var gameState: GameState
+    @StateObject private var gameViewModel = GameViewModel()
     var body: some View {
         VStack {
             if loading {
@@ -39,22 +41,35 @@ struct GameView: View {
                 unity.z = z
             }
         }
-        .onChange(of: unity.isEndGame) {
-            if unity.isEndGame {
-                unity.isEndGame = false
+        .onChange(of: gameState.phase) {
+            if (gameState.phase == .finished) {
                 navigatePath.append(.result)
+            }
+        }
+        .onChange(of: unity.isGameClear) {
+            if unity.isGameClear {
+                unity.isGameClear = false
+                // TODO: リザルトに情報を持たせる必要があるかも（そうするとゲームクリアとゲームオーバーで分岐せずに済む）
+                gameViewModel.gameFinish(gameState: gameState)
+            }
+        }
+        .onChange(of: unity.isGameOver) {
+            if unity.isGameOver {
+                unity.isGameOver = false
+                // TODO: リザルトに情報を持たせる必要があるかも（そうするとゲームクリアとゲームオーバーで分岐せずに済む）
+                gameViewModel.gameFinish(gameState: gameState)
             }
         }
         .navigationBarBackButtonHidden()
     }
-
+    
     private func handleUnityStart() {
         motion.startAccelerometerUpdates()
         loading = true
         unity.start()
         loading = false
     }
-
+    
     private func handleUnityStop() {
         motion.stopUpdates()
         loading = true

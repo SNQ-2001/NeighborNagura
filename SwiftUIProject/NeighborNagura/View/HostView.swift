@@ -9,6 +9,15 @@ import SwiftUI
 
 struct HostView: View {
     @Binding var navigatePath: [NavigationDestination]
+    @ObservedObject var gameState: GameState
+    @StateObject private var hostViewModel: HostViewModel
+    @State var showNotPreparedAleart = false
+    
+    init(navigatePath: Binding<[NavigationDestination]>, gameState: GameState) {
+        self._navigatePath = navigatePath
+        self.gameState = gameState
+        self._hostViewModel = .init(wrappedValue: .init(gameState: gameState))
+    }
     
     // ダミーデータ
     let members: [Member] = [
@@ -38,8 +47,11 @@ struct HostView: View {
                 // メンバーリスト
                 ScrollView {
                     VStack(spacing: 15) {
-                        ForEach(members, id: \.name) { member in
-                            MemberView(member: member) // コンポーネントを利用
+                        ForEach(hostViewModel.peers, id: \.peerId) { member in
+                            MemberView(member: Member(name: member.peerId.displayName)) // コンポーネントを利用
+                                .onTapGesture {
+                                    hostViewModel.invite(_selectedPeer: PeerDevice(peerId: member.peerId))
+                                }
                         }
                     }
                 }
@@ -50,6 +62,11 @@ struct HostView: View {
 
                 // ボタン
                 Button {
+                    if (!hostViewModel.join()) {
+                        showNotPreparedAleart = true
+                        return
+                    }
+                    hostViewModel.sendGameStartMessage()
                     navigatePath.append(.game)
                 } label: {
                     Text("ゲームを開始する")
@@ -65,5 +82,16 @@ struct HostView: View {
             }
             .padding()
         }
+        .alert(isPresented: $showNotPreparedAleart, content: {
+            Alert(
+                title: Text("まだ準備できてないよん"),
+                primaryButton: .default(Text("わかった"), action: {
+                    showNotPreparedAleart = false
+                }),
+                secondaryButton: .cancel(Text("ちょっと待つよ"), action: {
+                    showNotPreparedAleart = false
+                })
+            )
+        })
     }
 }
