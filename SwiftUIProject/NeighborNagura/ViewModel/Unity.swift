@@ -117,24 +117,14 @@ class Unity: SetsNativeState, ObservableObject  {
 
     private var marbleTexture: MTLTexture?
     private var checkerboardTexture: MTLTexture?
-    @Published var visible = true { didSet { stateDidSet() } }
-    @Published var scale: Float = 1 { didSet { stateDidSet() } }
-    @Published var texture = Texture.none { didSet { stateDidSet() } }
-    @Published var spotlight = LightTemperature.neutral { didSet { stateDidSet() } }
+
+    @Published var x: Double = 0 { didSet { stateDidSet() } }
+    @Published var y: Double = 0 { didSet { stateDidSet() } }
+    @Published var z: Double = 0 { didSet { stateDidSet() } }
 
     private func stateDidSet() {
-        let textureInstance: MTLTexture? = switch texture {
-        case .none: nil
-        case .marble: marbleTexture
-        case .checkerboard: checkerboardTexture
-        }
-        let textureWidth_C = CInt(textureInstance?.width ?? 0)
-        let textureHeight_C = CInt(textureInstance?.height ?? 0)
-        let texture_C = textureInstance.flatMap({ Unmanaged.passUnretained($0) })
-        spotlight.rawValue.withCString({ spotlight_C in
-            let nativeState = NativeState(scale: scale, visible: visible, spotlight: spotlight_C, textureWidth: textureWidth_C, textureHeight: textureHeight_C, texture: texture_C)
-            setNativeState?(nativeState)
-        })
+        let nativeState = NativeState(x: x, y: y, z: z)
+        setNativeState?(nativeState)
     }
 
     /* When a Unity script calls the NativeState plugin's OnSetNativeState function this
@@ -142,6 +132,8 @@ class Unity: SetsNativeState, ObservableObject  {
        C# delegate. See section on using delegates: docs.unity3d.com/Manual/PluginsForIOS.html */
     var setNativeState: SetNativeStateCallback? {
         didSet {
+            print("@@ setNativeState:", setNativeState)
+            
             if setNativeState != nil {
                 /* We can now send state to Unity. We should assume
                    Unity needs it immediately, so set the current state now. */
