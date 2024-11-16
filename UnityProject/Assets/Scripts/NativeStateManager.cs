@@ -15,6 +15,7 @@ public readonly struct NativeState
     public double x { get; init; }
     public double y { get; init; }
     public double z { get; init; }
+    public int userRole { get; init; }
 }
 
 public static class NativeStateManager
@@ -47,14 +48,14 @@ public static class NativeStateManager
         #endif
     }
 
-    public static void GameClear()
+    public static void GameClearUnity()
     {
         Debug.Log("GameClear");
         //Swiftのコールバック
         GameClear();
     }
 
-    public static void GameOver()
+    public static void GameOverUnity()
     {
         Debug.Log("GameOver");
         //Swiftのコールバック
