@@ -19,7 +19,6 @@ public class ForceManager : MonoBehaviour
     private Rigidbody m_BallRigidBody;
     private Vector3 m_Acceleration = Vector3.zero;
     
-    // ReSharper disable Unity.PerformanceAnalysis
     void Awake()
     {
         m_BallRigidBody = m_Ball.GetComponent<Rigidbody>();
@@ -62,7 +61,7 @@ public class ForceManager : MonoBehaviour
             stateVector.x * 20f,
             0f,
             stateVector.y * 20f
-            );
+        );
         // m_AccelerationText.text = m_Acceleration.ToString();
         m_AccelerationText.text = stateVector.ToString();
     }
