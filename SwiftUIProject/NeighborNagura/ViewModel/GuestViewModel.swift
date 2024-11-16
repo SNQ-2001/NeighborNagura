@@ -27,6 +27,7 @@ class GuestViewModel: NSObject, ObservableObject {
     let messageReceiver = PassthroughSubject<P2PMessage, Never>()
     var subscriptions = Set<AnyCancellable>()
     
+    // 画面遷移の時にだけ使う
     @Published var userRole: Unity.UserRole?
     
     init(gameState: GameState) {

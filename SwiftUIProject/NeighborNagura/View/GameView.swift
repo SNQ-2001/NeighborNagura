@@ -24,6 +24,20 @@ struct GameView: View {
                 Text("エラー。発生していたら報告。")
             }
         }
+        .onAppear {
+            if case .game(let userRole) = navigatePath.last {
+                switch userRole {
+                case .host:
+                    unity.userRole = .host
+                case .client1:
+                    unity.userRole = .client1
+                case .client2:
+                    unity.userRole = .client2
+                case .client3:
+                    unity.userRole = .client3
+                }
+            }
+        }
         .onAppear(perform: handleUnityStart)
         .onDisappear(perform: handleUnityStop)
         .onChange(of: [
