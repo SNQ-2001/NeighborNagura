@@ -24,7 +24,3 @@ struct ResultView: View {
         .navigationBarBackButtonHidden()
     }
 }
-
-#Preview {
-    ResultView(navigatePath: .constant([]))
-}

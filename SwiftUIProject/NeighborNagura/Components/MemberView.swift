@@ -40,9 +40,3 @@ struct MemberView: View {
         .shadow(radius: 3)
     }
 }
-
-#Preview {
-    MemberView(member: Member(name: "田中 太郎"))
-        .previewLayout(.sizeThatFits)
-        .padding()
-}

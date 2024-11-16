@@ -45,7 +45,3 @@ struct GameView: View {
         loading = false
     }
 }
-
-#Preview {
-    GameView(navigatePath: .constant([]))
-}

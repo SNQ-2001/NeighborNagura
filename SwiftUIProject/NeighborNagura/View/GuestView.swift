@@ -22,7 +22,3 @@ struct GuestView: View {
         }
     }
 }
-
-#Preview {
-    GuestView(navigatePath: .constant([]))
-}
