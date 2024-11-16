@@ -71,12 +71,12 @@ public class ForceManager : MonoBehaviour
     private void GameClear()
     {
         //Swift側の関数を呼び出す
-        NativeStateManager.GameClear();
+        NativeStateManager.GameClearUnity();
     }
 
-        private void GameOver()
+    private void GameOver()
     {
         //Swift側の関数を呼び出す
-        NativeStateManager.GameOver();
+        NativeStateManager.GameOverUnity();
     }
 }

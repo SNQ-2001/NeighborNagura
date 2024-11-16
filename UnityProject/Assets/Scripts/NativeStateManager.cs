@@ -48,14 +48,14 @@ public static class NativeStateManager
         #endif
     }
 
-    public static void GameClear()
+    public static void GameClearUnity()
     {
         Debug.Log("GameClear");
         //Swiftのコールバック
         GameClear();
     }
 
-    public static void GameOver()
+    public static void GameOverUnity()
     {
         Debug.Log("GameOver");
         //Swiftのコールバック
