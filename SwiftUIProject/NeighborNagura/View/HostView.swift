@@ -9,6 +9,14 @@ import SwiftUI
 
 struct HostView: View {
     @Binding var navigatePath: [NavigationDestination]
+    @ObservedObject var gameState: GameState
+    @StateObject private var hostViewModel: HostViewModel
+    
+    init(navigatePath: Binding<[NavigationDestination]>, gameState: GameState) {
+        self._navigatePath = navigatePath
+        self.gameState = gameState
+        self._hostViewModel = .init(wrappedValue: .init(gameState: gameState))
+    }
     
     // ダミーデータ
     let members: [Member] = [
@@ -38,6 +46,7 @@ struct HostView: View {
                 // メンバーリスト
                 ScrollView {
                     VStack(spacing: 15) {
+                        let members = hostViewModel.peers.map({Member(name: $0.peerId.displayName)})
                         ForEach(members, id: \.name) { member in
                             MemberView(member: member) // コンポーネントを利用
                         }

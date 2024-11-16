@@ -10,6 +10,7 @@ import SwiftUI
 struct TitleView: View {
     @State private var navigatePath: [NavigationDestination] = []
     @State private var imageScale: CGFloat = 1.0 // 拡大率を調整するためのState
+    @StateObject private var gameState = GameState()
 
     var body: some View {
         NavigationStack(path: $navigatePath) {
@@ -60,8 +61,8 @@ struct TitleView: View {
             }
             .navigationDestination(for: NavigationDestination.self) { destination in
                 switch destination {
-                case .host: HostView(navigatePath: $navigatePath)
-                case .guest: GuestView(navigatePath: $navigatePath)
+                case .host: HostView(navigatePath: $navigatePath, gameState: gameState)
+                case .guest: GuestView(navigatePath: $navigatePath, gameState: gameState)
                 case .game: GameView(navigatePath: $navigatePath)
                 case .result: ResultView(navigatePath: $navigatePath)
                 }

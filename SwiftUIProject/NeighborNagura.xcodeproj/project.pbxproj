@@ -14,6 +14,12 @@
 		B57974CB2B38D8CC00A28CAF /* NeighborNaguraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57974CA2B38D8CC00A28CAF /* NeighborNaguraApp.swift */; };
 		B57974CF2B38D8CD00A28CAF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B57974CE2B38D8CD00A28CAF /* Assets.xcassets */; };
 		B57974D22B38D8CD00A28CAF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B57974D12B38D8CD00A28CAF /* Preview Assets.xcassets */; };
+		B75964522CE9185500ABCBDD /* P2PMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75964512CE9185500ABCBDD /* P2PMessage.swift */; };
+		B75964542CE9185A00ABCBDD /* PeerDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75964532CE9185A00ABCBDD /* PeerDevice.swift */; };
+		B75964562CE9185F00ABCBDD /* PermissionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75964552CE9185F00ABCBDD /* PermissionRequest.swift */; };
+		B75964582CE9187100ABCBDD /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75964572CE9187100ABCBDD /* GameViewModel.swift */; };
+		B759645A2CE9187600ABCBDD /* GuestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75964592CE9187600ABCBDD /* GuestViewModel.swift */; };
+		B759645C2CE9187A00ABCBDD /* HostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B759645B2CE9187A00ABCBDD /* HostViewModel.swift */; };
 		E43BB0572CE8E9B700ACE788 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43BB0562CE8E9B700ACE788 /* TitleView.swift */; };
 		E43BB0592CE8E9BC00ACE788 /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43BB0582CE8E9BC00ACE788 /* ResultView.swift */; };
 		E43BB05B2CE8E9C200ACE788 /* HostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43BB05A2CE8E9C200ACE788 /* HostView.swift */; };
@@ -47,6 +53,12 @@
 		B57974CA2B38D8CC00A28CAF /* NeighborNaguraApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeighborNaguraApp.swift; sourceTree = "<group>"; };
 		B57974CE2B38D8CD00A28CAF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B57974D12B38D8CD00A28CAF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B75964512CE9185500ABCBDD /* P2PMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = P2PMessage.swift; sourceTree = "<group>"; };
+		B75964532CE9185A00ABCBDD /* PeerDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeerDevice.swift; sourceTree = "<group>"; };
+		B75964552CE9185F00ABCBDD /* PermissionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionRequest.swift; sourceTree = "<group>"; };
+		B75964572CE9187100ABCBDD /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
+		B75964592CE9187600ABCBDD /* GuestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestViewModel.swift; sourceTree = "<group>"; };
+		B759645B2CE9187A00ABCBDD /* HostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostViewModel.swift; sourceTree = "<group>"; };
 		E43BB0562CE8E9B700ACE788 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
 		E43BB0582CE8E9BC00ACE788 /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		E43BB05A2CE8E9C200ACE788 /* HostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostView.swift; sourceTree = "<group>"; };
@@ -60,6 +72,7 @@
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		ABB692222CE8F5D500F26ABB /* Components */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Components; sourceTree = "<group>"; };
+		B759644C2CE9181300ABCBDD /* State */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = State; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +114,7 @@
 		B57974C92B38D8CC00A28CAF /* NeighborNagura */ = {
 			isa = PBXGroup;
 			children = (
+				B759644C2CE9181300ABCBDD /* State */,
 				ABB692222CE8F5D500F26ABB /* Components */,
 				E43BB0542CE8E96C00ACE788 /* Application */,
 				E43BB0522CE8E94300ACE788 /* View */,
@@ -147,6 +161,9 @@
 		E43BB0532CE8E94700ACE788 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B75964552CE9185F00ABCBDD /* PermissionRequest.swift */,
+				B75964532CE9185A00ABCBDD /* PeerDevice.swift */,
+				B75964512CE9185500ABCBDD /* P2PMessage.swift */,
 				E43BB0842CE9036B00ACE788 /* Motion.swift */,
 				E43BB0602CE8E9FF00ACE788 /* NavigationDestination.swift */,
 			);
@@ -164,6 +181,9 @@
 		E43BB0552CE8E97A00ACE788 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				B759645B2CE9187A00ABCBDD /* HostViewModel.swift */,
+				B75964592CE9187600ABCBDD /* GuestViewModel.swift */,
+				B75964572CE9187100ABCBDD /* GameViewModel.swift */,
 				B53E02822B38E664008D4E31 /* Unity.swift */,
 			);
 			path = ViewModel;
@@ -187,6 +207,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				ABB692222CE8F5D500F26ABB /* Components */,
+				B759644C2CE9181300ABCBDD /* State */,
 			);
 			name = NeighborNagura;
 			productName = UnitySwiftUI;
@@ -249,12 +270,18 @@
 				B53E02832B38E664008D4E31 /* Unity.swift in Sources */,
 				B57974CB2B38D8CC00A28CAF /* NeighborNaguraApp.swift in Sources */,
 				E43BB0612CE8E9FF00ACE788 /* NavigationDestination.swift in Sources */,
+				B75964562CE9185F00ABCBDD /* PermissionRequest.swift in Sources */,
+				B75964522CE9185500ABCBDD /* P2PMessage.swift in Sources */,
+				B75964582CE9187100ABCBDD /* GameViewModel.swift in Sources */,
+				B759645C2CE9187A00ABCBDD /* HostViewModel.swift in Sources */,
 				E43BB0852CE9036B00ACE788 /* Motion.swift in Sources */,
 				E43BB05F2CE8E9CC00ACE788 /* GameView.swift in Sources */,
+				B75964542CE9185A00ABCBDD /* PeerDevice.swift in Sources */,
 				E43BB0572CE8E9B700ACE788 /* TitleView.swift in Sources */,
 				E43BB05D2CE8E9C700ACE788 /* GuestView.swift in Sources */,
 				E43BB0592CE8E9BC00ACE788 /* ResultView.swift in Sources */,
 				E43BB05B2CE8E9C200ACE788 /* HostView.swift in Sources */,
+				B759645A2CE9187600ABCBDD /* GuestViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,7 +416,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"NeighborNagura/Preview Content\"";
-				DEVELOPMENT_TEAM = 9UHS7564UD;
+				DEVELOPMENT_TEAM = 7K9UH939S4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NeighborNagura/Resource/Info.plist;
@@ -405,7 +432,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.shunki.tada.spajamaaa;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shunsuke.tamura;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -423,7 +450,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"NeighborNagura/Preview Content\"";
-				DEVELOPMENT_TEAM = 9UHS7564UD;
+				DEVELOPMENT_TEAM = 7K9UH939S4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NeighborNagura/Resource/Info.plist;
@@ -439,7 +466,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.shunki.tada.spajamaaa;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shunsuke.tamura;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;

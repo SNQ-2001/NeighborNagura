@@ -9,6 +9,14 @@ import SwiftUI
 
 struct GuestView: View {
     @Binding var navigatePath: [NavigationDestination]
+    @ObservedObject var gameState: GameState
+    @StateObject private var guestViewModel: GuestViewModel
+    
+    init(navigatePath: Binding<[NavigationDestination]>, gameState: GameState) {
+        self._navigatePath = navigatePath
+        self.gameState = gameState
+        self._guestViewModel = .init(wrappedValue: .init(gameState: gameState))
+    }
 
     var body: some View {
         ZStack {
@@ -29,5 +37,17 @@ struct GuestView: View {
                 .padding(.horizontal, 20) // 横方向に余裕を追加
         }
         .navigationBarBackButtonHidden() // 戻るボタンを非表示
+        .alert(item: $guestViewModel.permissionRequest, content: { request in
+            Alert(
+                title: Text("Do you want to join \(request.peerId.displayName)"),
+                primaryButton: .default(Text("Yes"), action: {
+                    request.onRequest(true)
+                    guestViewModel.join(peer: PeerDevice(peerId: request.peerId))
+                }),
+                secondaryButton: .cancel(Text("No"), action: {
+                    request.onRequest(false)
+                })
+            )
+        })
     }
 }
