@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GoalTrigger : MonoBehaviour
+public class FireScript : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -12,22 +12,24 @@ public class GoalTrigger : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        // 衝突したオブジェクトの名前を取得（例: Player）
-        if (collision.gameObject.CompareTag("Player"))
+        // 衝突したオブジェクトの名前を取得
+        if (collision.gameObject.CompareTag("Sphere"))
         {
-            Debug.Log("ゴールに衝突しました！");
+            Debug.Log("Fireに衝突しました");
+            
             // 例: ゲームクリアの処理
-            GameClear();
+            GameOver();
         }
     }
-
-    void GameClear()
+    void GameOver()
     {
-        Debug.Log("ゲームクリア！");
+        Debug.Log("GAME OVER");
     }
+
 
     // Update is called once per frame
     void Update()
     {
+        
     }
 }
