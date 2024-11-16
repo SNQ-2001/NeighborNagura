@@ -107,7 +107,8 @@ class Unity: SetsNativeState, ObservableObject  {
     @Published var isEndGame: Bool = false
 
     private func stateDidSet() {
-        let nativeState = NativeState(x: x, y: y, z: z, userRole: Int32(userRole.rawValue))
+        // x と zを入れ替えている
+        let nativeState = NativeState(x: z, y: y, z: x, userRole: Int32(userRole.rawValue))
         setNativeState?(nativeState)
     }
 
