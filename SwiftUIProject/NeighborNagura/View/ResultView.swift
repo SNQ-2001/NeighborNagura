@@ -13,10 +13,15 @@ struct ResultView: View {
     var body: some View {
         ZStack {
             // 背景画像
-            Image(.topPage) // アセットカタログ内の背景画像を指定
+            // 背景画像
+            Image(.topPage)
                 .resizable()
-                .scaledToFill()
-                .ignoresSafeArea() // セーフエリアを無視して全画面に表示
+                .scaledToFill() // 比率を維持して拡大縮小
+                .frame(width: UIScreen.main.bounds.width * 1.2, // サイズ調整
+                       height: UIScreen.main.bounds.height * 1.2)
+                .clipped() // 外にはみ出る部分をカット
+                .position(x: UIScreen.main.bounds.width / 2, // 真ん中に配置
+                          y: UIScreen.main.bounds.height / 2 - 50)
 
             // タイトルに戻るボタン
             VStack {
