@@ -61,6 +61,8 @@ struct HostView: View {
 
                 // ボタン
                 Button {
+                    SoundManager.shared.stopSound() // サウンドを停止
+                    SoundManager.shared.playSound("result_sound")
                     _ = hostViewModel.join()
                     hostViewModel.sendGameStartMessage()
                     let impactFeedback = UIImpactFeedbackGenerator(style: .medium)

@@ -48,6 +48,8 @@ struct TitleView: View {
 
                     // ゲストボタン
                     Button {
+                        SoundManager.shared.stopSound() // サウンドを停止
+                        SoundManager.shared.playSound("result_sound")
                         let impactFeedback = UIImpactFeedbackGenerator(style: .medium)
                         impactFeedback.impactOccurred()
                         navigatePath.append(.guest)
@@ -62,6 +64,10 @@ struct TitleView: View {
                     }
                 }
                 .padding() // VStack全体を少し余裕を持たせるパディング
+                .onAppear {
+                    // 画面ロード時にサウンドを再生する
+                    SoundManager.shared.playSound("Wanderers-City")
+                }
             }
             .navigationDestination(for: NavigationDestination.self) { destination in
                 switch destination {
