@@ -15,6 +15,7 @@ class HostViewModel: NSObject, ObservableObject {
     private let browser: MCNearbyServiceBrowser
     private let serviceType = "nearby-devices"
     
+    @Published var sessionState: MCSessionState = .notConnected
     @Published var peers: [PeerDevice] = []
     var selectedPeers: [PeerDevice] = []
     var joinedPeers: [PeerDevice] = []
@@ -124,8 +125,8 @@ extension HostViewModel: MCNearbyServiceAdvertiserDelegate {
 
 extension HostViewModel: MCSessionDelegate {
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
-        //
-    }
+           self.sessionState = state
+       }
     
     // sessionを通して送られてくるmessageをViewLogicのballStateReceiverに流す
     func session(_ session: MCSession, didReceive data: Data, fromPeer fromPeerID: MCPeerID) {

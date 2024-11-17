@@ -61,6 +61,7 @@ struct HostView: View {
 
                 // ボタン
                 Button {
+                    _ = hostViewModel.join()
                     hostViewModel.sendGameStartMessage()
                     navigatePath.append(.game(.host))
                 } label: {
@@ -69,11 +70,11 @@ struct HostView: View {
                         .foregroundColor(.white) // 白文字に設定
                         .padding() // 内側に余白を追加
                         .frame(maxWidth: .infinity) // 横幅を最大に調整
-                        .background(hostViewModel.join() ? Color.black : Color.gray) // 背景を黒に設定
+                        .background(hostViewModel.sessionState != .connected ? Color.gray : Color.black) // 背景を黒に設定
                         .cornerRadius(10) // 角を丸くする
                         .padding(.horizontal, 20) // 横方向に余白を追加
                 }
-                .disabled(!hostViewModel.join())
+                .disabled(hostViewModel.sessionState != .connected)
             }
             .padding()
         }
