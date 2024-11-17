@@ -16,6 +16,7 @@ typedef void (*SetNativeStateCallback)(struct NativeState nextState);
 @property (nullable) SetNativeStateCallback setNativeState;
 - (void)gameClear;
 - (void)gameOver;
+- (void)setHostPosition:(float)x y:(float)y;
 @end
 
 __attribute__ ((visibility("default")))
