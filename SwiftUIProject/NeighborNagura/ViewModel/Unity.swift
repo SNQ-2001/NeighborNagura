@@ -107,9 +107,9 @@ class Unity: SetsNativeState, ObservableObject  {
     private func stateDidSet() {
         //xとzを逆にしている
         let nativeState = NativeState(
-            x: ballAcceleration.z,
+            x: ballAcceleration.x,
             y: ballAcceleration.y,
-            z: ballAcceleration.x,
+            z: ballAcceleration.z,
             userRole: Int32(userRole.rawValue)
         )
         setNativeState?(nativeState)
