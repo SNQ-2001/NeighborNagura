@@ -69,6 +69,6 @@ public static class NativeStateManager
 
     public static void SetHostPositionUnity(float x, float y)
     {
-        
+        SetHostPosition(x, y);
     }
 }
