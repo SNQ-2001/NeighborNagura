@@ -420,7 +420,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"NeighborNagura/Preview Content\"";
-				DEVELOPMENT_TEAM = 7K9UH939S4;
+				DEVELOPMENT_TEAM = 8K2Z64AUSL;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NeighborNagura/Resource/Info.plist;
@@ -437,7 +437,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.shunsuke.tamura;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shunki.tada.spajamaa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -455,7 +455,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"NeighborNagura/Preview Content\"";
-				DEVELOPMENT_TEAM = 7K9UH939S4;
+				DEVELOPMENT_TEAM = 8K2Z64AUSL;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NeighborNagura/Resource/Info.plist;
@@ -472,7 +472,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.shunsuke.tamura;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shunki.tada.spajamaa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;

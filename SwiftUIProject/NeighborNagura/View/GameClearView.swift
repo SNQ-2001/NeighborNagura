@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct TreasureAnimationView: View {
+struct GameClearView: View {
     @Binding var navigatePath: [NavigationDestination]
     @State private var gateScale: CGFloat = 1 // 左右と中央門の拡大率を共通で管理
     @State private var leftOffset: CGFloat = 0
@@ -15,12 +15,27 @@ struct TreasureAnimationView: View {
 
             // 宝物の画像
             if showTreasure {
-                Image("treasure")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 400, height: 400) // 元のサイズの1.5倍
-                    .transition(.scale)
-                    .zIndex(0) // 一番後ろに配置
+                VStack {
+                    Image("treasure")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 400, height: 400) // 元のサイズの1.5倍
+                        .transition(.scale)
+                        .zIndex(0) // 一番後ろに配置
+                    
+                    Button {
+                        let impactFeedback = UIImpactFeedbackGenerator(style: .medium)
+                        impactFeedback.impactOccurred()
+                        navigatePath.removeAll() // ナビゲーションスタックをリセット
+                    } label: {
+                        Text("タイトルにもどる")
+                            .font(Font.custom("Mimi_font-Regular", size: 32))
+                            .foregroundColor(.black) // テキストを白に変更
+                            .padding()
+                            .background(Color.white) // ボタン背景を黒に変更
+                            .cornerRadius(10) // 角を丸める
+                    }
+                }
             }
 
             // 中央の門
@@ -50,6 +65,7 @@ struct TreasureAnimationView: View {
                 .offset(x: rightOffset)
                 .zIndex(1)
         }
+        .navigationBarBackButtonHidden()
         .onAppear {
             performAnimation()
         }
