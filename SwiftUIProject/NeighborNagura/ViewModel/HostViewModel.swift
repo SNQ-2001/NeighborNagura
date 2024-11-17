@@ -15,6 +15,7 @@ class HostViewModel: NSObject, ObservableObject {
     private let browser: MCNearbyServiceBrowser
     private let serviceType = "nearby-devices"
     
+    @Published var sessionState: MCSessionState = .notConnected
     @Published var peers: [PeerDevice] = []
     var selectedPeers: [PeerDevice] = []
     var joinedPeers: [PeerDevice] = []
@@ -41,13 +42,6 @@ class HostViewModel: NSObject, ObservableObject {
         browser.delegate = self
         advertiser.delegate = self
         gameState.session!.delegate = self
-        
-        messageReceiver
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] in
-                self?.receiveMessage(_message: $0)
-            }
-            .store(in: &subscriptions)
         
         browser.startBrowsingForPeers()
     }
@@ -88,48 +82,20 @@ class HostViewModel: NSObject, ObservableObject {
         
         return true
     }
-    
-    private func receiveMessage(_message: P2PMessage) {
-        switch _message.type {
-        case .updateBallStateMessage:
-            guard let message = UpdateBallStateMessage.fromJson(jsonString: _message.jsonData) else {
-                print("Failed to decode BallState from JSON: \(_message.jsonData)")
+
+    func sendGameStartMessage() {
+        let peerIds = Array(joinedPeers.map { $0.peerId }.prefix(3))
+        for index in 0..<peerIds.count {
+            guard let messageData = P2PMessage(
+                type: .gameStartMessage,
+                jsonData: "@@\((index + 1).description)"
+            ).toSendMessage().data(using: .utf8) else {
                 return
             }
-            gameState.updateBallState(_ballState: message.ballState)
-        case .gameStartMessage:
-            return
-        case .gameFinishMessage:
-            return
+            print("👹 \(peerIds[index])")
+            print("👹 \(messageData)")
+            try? gameState.session?.send(messageData, toPeers: [peerIds[index]], with: .reliable)
         }
-    }
-    
-    func sendUpdateBallStateMessage(_ballState: BallState) {
-        guard let jsonData = UpdateBallStateMessage(ballState: _ballState).toJson() else {
-            return
-        }
-        guard let messageData = P2PMessage(type: .updateBallStateMessage, jsonData: jsonData).toSendMessage().data(using: .utf8) else {
-            return
-        }
-        
-        // 相手に送信
-        // try? session.send(data, toPeers: [joinedPeer.last!.peerId], with: .reliable)
-        let peerIds = joinedPeers.map { $0.peerId }
-        try? gameState.session?.send(messageData, toPeers: peerIds, with: .reliable)
-        
-        // 自分にも送信
-        messageReceiver.send(P2PMessage(type: .updateBallStateMessage, jsonData: jsonData))
-    }
-    
-    func sendGameStartMessage() {
-        guard let messageData = P2PMessage(type: .gameStartMessage, jsonData: "").toSendMessage().data(using: .utf8) else {
-            return
-        }
-
-        let peerIds = joinedPeers.map { $0.peerId }
-        print("👹 \(peerIds)")
-        print("👹 \(messageData)")
-        try? gameState.session?.send(messageData, toPeers: peerIds, with: .reliable)
     }
 }
 
@@ -159,8 +125,8 @@ extension HostViewModel: MCNearbyServiceAdvertiserDelegate {
 
 extension HostViewModel: MCSessionDelegate {
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
-        //
-    }
+           self.sessionState = state
+       }
     
     // sessionを通して送られてくるmessageをViewLogicのballStateReceiverに流す
     func session(_ session: MCSession, didReceive data: Data, fromPeer fromPeerID: MCPeerID) {

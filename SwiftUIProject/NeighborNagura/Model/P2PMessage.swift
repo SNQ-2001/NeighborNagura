@@ -10,7 +10,8 @@ import Foundation
 enum MessageType: Int, Codable {
     case updateBallStateMessage = 0
     case gameStartMessage = 1
-    case gameFinishMessage = 2
+    case gameBallAccelerationMessage = 2
+    case gameFinishMessage = 3
 }
 
 class P2PMessage: Codable {
@@ -42,7 +43,7 @@ class P2PMessage: Codable {
     }
 }
 
-class UpdateBallStateMessage:Codable {
+final class UpdateBallStateMessage: Codable {
     var ballState: BallState
     
     init(ballState: BallState) {

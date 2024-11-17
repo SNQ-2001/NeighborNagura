@@ -27,7 +27,8 @@ class GuestViewModel: NSObject, ObservableObject {
     let messageReceiver = PassthroughSubject<P2PMessage, Never>()
     var subscriptions = Set<AnyCancellable>()
     
-    @Published var isGameStart = false
+    // 画面遷移の時にだけ使う
+    @Published var userRole: Unity.UserRole?
     
     init(gameState: GameState) {
         let peer = MCPeerID(displayName: UIDevice.current.name)
@@ -69,7 +70,18 @@ class GuestViewModel: NSObject, ObservableObject {
             }
             gameState.updateBallState(_ballState: message.ballState)
         case .gameStartMessage:
-            isGameStart = true
+            let startIndex = _message.jsonData.index(_message.jsonData.startIndex, offsetBy: 2)
+            let numberText = String(_message.jsonData[startIndex...])
+            self.userRole = Unity.UserRole(rawValue: Int(numberText)!)
+        case .gameBallAccelerationMessage:
+            let decoder = JSONDecoder()
+            guard
+                let jsonData = _message.jsonData.data(using: .utf8),
+                let ballAcceleration = try? decoder.decode(BallAcceleration.self, from: jsonData)
+            else {
+                return
+            }
+            gameState.ballAcceleration = ballAcceleration
         case .gameFinishMessage:
             gameState.updatePhase(phase: .finished)
         }
