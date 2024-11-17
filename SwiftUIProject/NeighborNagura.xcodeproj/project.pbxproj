@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0FACFE932CE976D7005BD886 /* Wanderers-City.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0FACFE922CE976D7005BD886 /* Wanderers-City.mp3 */; };
+		0FACFE952CE97A3B005BD886 /* result_sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0FACFE942CE97A3B005BD886 /* result_sound.mp3 */; };
 		ABB692272CE8F69500F26ABB /* character_yusha_woman_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = ABB692262CE8F69500F26ABB /* character_yusha_woman_blue.png */; };
 		B50DC73A2B4151780013AB7B /* UIViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50DC7392B4151780013AB7B /* UIViewContainer.swift */; };
 		B53E02802B38E110008D4E31 /* UnityFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B53E027E2B38E110008D4E31 /* UnityFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -45,6 +47,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0FACFE922CE976D7005BD886 /* Wanderers-City.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Wanderers-City.mp3"; sourceTree = "<group>"; };
+		0FACFE942CE97A3B005BD886 /* result_sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = result_sound.mp3; sourceTree = "<group>"; };
 		ABB692262CE8F69500F26ABB /* character_yusha_woman_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = character_yusha_woman_blue.png; sourceTree = "<group>"; };
 		B50DC7392B4151780013AB7B /* UIViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewContainer.swift; sourceTree = "<group>"; };
 		B53E027E2B38E110008D4E31 /* UnityFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UnityFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,6 +75,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		0FACFE892CE974E8005BD886 /* Managers */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Managers; sourceTree = "<group>"; };
 		ABB692222CE8F5D500F26ABB /* Components */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Components; sourceTree = "<group>"; };
 		B759644C2CE9181300ABCBDD /* State */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = State; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -114,6 +119,7 @@
 		B57974C92B38D8CC00A28CAF /* NeighborNagura */ = {
 			isa = PBXGroup;
 			children = (
+				0FACFE892CE974E8005BD886 /* Managers */,
 				B759644C2CE9181300ABCBDD /* State */,
 				ABB692222CE8F5D500F26ABB /* Components */,
 				E43BB0542CE8E96C00ACE788 /* Application */,
@@ -141,6 +147,8 @@
 				E43BB0642CE8EA2E00ACE788 /* Info.plist */,
 				B57974CE2B38D8CD00A28CAF /* Assets.xcassets */,
 				E43BB0622CE8EA1F00ACE788 /* Mimi_font-Regular.ttf */,
+				0FACFE922CE976D7005BD886 /* Wanderers-City.mp3 */,
+				0FACFE942CE97A3B005BD886 /* result_sound.mp3 */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -206,6 +214,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				0FACFE892CE974E8005BD886 /* Managers */,
 				ABB692222CE8F5D500F26ABB /* Components */,
 				B759644C2CE9181300ABCBDD /* State */,
 			);
@@ -253,6 +262,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABB692272CE8F69500F26ABB /* character_yusha_woman_blue.png in Resources */,
+				0FACFE952CE97A3B005BD886 /* result_sound.mp3 in Resources */,
+				0FACFE932CE976D7005BD886 /* Wanderers-City.mp3 in Resources */,
 				B57974D22B38D8CD00A28CAF /* Preview Assets.xcassets in Resources */,
 				B57974CF2B38D8CD00A28CAF /* Assets.xcassets in Resources */,
 				E43BB0632CE8EA1F00ACE788 /* Mimi_font-Regular.ttf in Resources */,
@@ -416,7 +427,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"NeighborNagura/Preview Content\"";
-				DEVELOPMENT_TEAM = 7K9UH939S4;
+				DEVELOPMENT_TEAM = 9P9Y2633BX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NeighborNagura/Resource/Info.plist;
@@ -433,7 +444,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.shunsuke.tamura;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kenta.yamada.spajam-2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -451,7 +462,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"NeighborNagura/Preview Content\"";
-				DEVELOPMENT_TEAM = 7K9UH939S4;
+				DEVELOPMENT_TEAM = 9P9Y2633BX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NeighborNagura/Resource/Info.plist;
@@ -468,7 +479,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.shunsuke.tamura;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kenta.yamada.spajam-2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
