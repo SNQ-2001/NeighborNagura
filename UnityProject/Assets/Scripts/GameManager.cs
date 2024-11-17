@@ -129,16 +129,16 @@ public class GameManager : MonoBehaviour
         if (m_IsServer)
         {
             NativeStateManager.SetHostPositionUnity(
-                m_ForceManager.BallPosition.x,
-                m_ForceManager.BallPosition.z
+                m_ForceManager.BallTransform.position.x,
+                m_ForceManager.BallTransform.position.z
             );
         }
         else
         {
-            m_ForceManager.BallPosition = new Vector3(
-                NativeStateManager.State., //hostposition
+            m_ForceManager.BallTransform.position = new Vector3(
+                (float)NativeStateManager.State.positionX,
                 0.1f,
-                NativeStateManager.State. //hostposition
+                (float)NativeStateManager.State.positionY
             );
         }
 #endif

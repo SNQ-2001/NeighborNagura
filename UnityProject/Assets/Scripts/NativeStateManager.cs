@@ -15,6 +15,8 @@ public readonly struct NativeState
     public double x { get; init; }
     public double y { get; init; }
     public double z { get; init; }
+    public double positionX { get; init; }
+    public double positionY { get; init; }
     public int userRole { get; init; }
 }
 
