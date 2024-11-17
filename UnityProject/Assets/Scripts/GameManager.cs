@@ -36,10 +36,15 @@ public class GameManager : MonoBehaviour
         
         //適当な場所にホール生成
         m_Hole = Instantiate(m_HolePrefab);
+        // m_Hole.transform.position = new Vector3(
+        //     Random.Range(-6.5f, 6.5f),
+        //     0.1f,
+        //     Random.Range(-18.5f, 18.5f)
+        // );
         m_Hole.transform.position = new Vector3(
-            Random.Range(-6.5f, 6.5f),
+            5f,
             0.1f,
-            Random.Range(-18.5f, 18.5f)
+            13f
         );
         
         for (int i = 0; i < 44; i++)
@@ -120,13 +125,6 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (m_OnClearFlag)
-        {
-#if !UNITY_EDITOR
-            NativeStateManager.GameClearUnity();
-#endif
-        }
-        
         NativeState state = NativeStateManager.State;
         Vector3 stateVector = new Vector3(
             (float)state.x,
@@ -155,7 +153,9 @@ public class GameManager : MonoBehaviour
         m_ClearCover.SetActive(true);
         await UniTask.WaitForSeconds(0.2f);
         await m_EffectManager.PlayClear(info.HolePosition);
-        m_OnClearFlag = true;
+#if !UNITY_EDITOR
+        NativeStateManager.GameClearUnity();
+#endif
     }
 
     private void OnEnter(HoleCollisionController.HoleCollisionInfo info)
