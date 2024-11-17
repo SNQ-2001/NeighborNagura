@@ -32,3 +32,9 @@ class BallPosition: Decodable, Encodable {
         return lhs.x == rhs.x && lhs.y == rhs.y
     }
 }
+
+struct BallAcceleration: Codable, Equatable {
+    let x: Double
+    let y: Double
+    let z: Double
+}

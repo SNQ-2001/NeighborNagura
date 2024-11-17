@@ -99,16 +99,19 @@ class Unity: SetsNativeState, ObservableObject  {
         case client3 = 3
     }
 
-    @Published var x: Double = 0 { didSet { stateDidSet() } }
-    @Published var y: Double = 0 { didSet { stateDidSet() } }
-    @Published var z: Double = 0 { didSet { stateDidSet() } }
+    @Published var ballAcceleration: BallAcceleration = .init(x: 0, y: 0, z: 0) { didSet { stateDidSet() } }
     @Published var userRole: UserRole = .host { didSet { stateDidSet() } }
     @Published var isGameClear: Bool = false
     @Published var isGameOver: Bool = false
 
     private func stateDidSet() {
         // x と zを入れ替えている
-        let nativeState = NativeState(x: x, y: y, z: z, userRole: Int32(userRole.rawValue))
+        let nativeState = NativeState(
+            x: ballAcceleration.z,
+            y: ballAcceleration.y,
+            z: ballAcceleration.x,
+            userRole: Int32(userRole.rawValue)
+        )
         setNativeState?(nativeState)
     }
 

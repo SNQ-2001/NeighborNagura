@@ -24,21 +24,60 @@ struct GameView: View {
                 Text("エラー。発生していたら報告。")
             }
         }
+        .onAppear {
+            if case .game(let userRole) = navigatePath.last {
+                switch userRole {
+                case .host:
+                    unity.userRole = .host
+                case .client1:
+                    unity.userRole = .client1
+                case .client2:
+                    unity.userRole = .client2
+                case .client3:
+                    unity.userRole = .client3
+                }
+            }
+        }
+        .overlay{
+            Text("ユーザー: \(unity.userRole.rawValue)")
+                .foregroundColor(.white)
+                .padding()
+                .background(Color.black.opacity(0.5))
+                .cornerRadius(10)
+                .padding()
+        }
         .onAppear(perform: handleUnityStart)
         .onDisappear(perform: handleUnityStop)
-        .onChange(of: motion.accelerometerData?.acceleration.x) {
-            if let x = motion.accelerometerData?.acceleration.x {
-                unity.x = x
+        .onChange(of: [
+            motion.accelerometerData?.acceleration.x,
+            motion.accelerometerData?.acceleration.y,
+            motion.accelerometerData?.acceleration.z
+        ]) {
+            switch unity.userRole {
+            case .host:
+                guard let accelerometerData = motion.accelerometerData else {
+                    return
+                }
+                unity.ballAcceleration = .init(
+                    x: accelerometerData.acceleration.x,
+                    y: accelerometerData.acceleration.y,
+                    z: accelerometerData.acceleration.z
+                )
+                gameViewModel.sendGameBallAccelerationMessage(
+                    session: gameState.session!,
+                    ballAcceleration: .init(
+                        x: accelerometerData.acceleration.x,
+                        y: accelerometerData.acceleration.y,
+                        z: accelerometerData.acceleration.z
+                    )
+                )
+            case .client1, .client2, .client3:
+                return
             }
         }
-        .onChange(of: motion.accelerometerData?.acceleration.y) {
-            if let y = motion.accelerometerData?.acceleration.y {
-                unity.y = y
-            }
-        }
-        .onChange(of: motion.accelerometerData?.acceleration.z) {
-            if let z = motion.accelerometerData?.acceleration.z {
-                unity.z = z
+        .onChange(of: gameState.ballAcceleration) {
+            if unity.userRole != .host {
+                unity.ballAcceleration = gameState.ballAcceleration
             }
         }
         .onChange(of: gameState.phase) {
@@ -64,14 +103,18 @@ struct GameView: View {
     }
     
     private func handleUnityStart() {
-        motion.startAccelerometerUpdates()
+        if unity.userRole == .host {
+            motion.startAccelerometerUpdates()
+        }
         loading = true
         unity.start()
         loading = false
     }
     
     private func handleUnityStop() {
-        motion.stopUpdates()
+        if unity.userRole == .host {
+            motion.stopUpdates()
+        }
         loading = true
         unity.stop()
         loading = false

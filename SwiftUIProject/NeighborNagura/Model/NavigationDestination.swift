@@ -11,6 +11,6 @@ import Foundation
 enum NavigationDestination: Hashable {
     case host
     case guest
-    case game
+    case game(Unity.UserRole)
     case result
 }

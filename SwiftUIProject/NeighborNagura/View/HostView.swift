@@ -11,7 +11,6 @@ struct HostView: View {
     @Binding var navigatePath: [NavigationDestination]
     @ObservedObject var gameState: GameState
     @StateObject private var hostViewModel: HostViewModel
-    @State var showNotPreparedAleart = false
     
     init(navigatePath: Binding<[NavigationDestination]>, gameState: GameState) {
         self._navigatePath = navigatePath
@@ -62,36 +61,24 @@ struct HostView: View {
 
                 // ボタン
                 Button {
-                    if (!hostViewModel.join()) {
-                        showNotPreparedAleart = true
-                        return
-                    }
+                    _ = hostViewModel.join()
                     hostViewModel.sendGameStartMessage()
-                    navigatePath.append(.game)
+                    let impactFeedback = UIImpactFeedbackGenerator(style: .medium)
+                    impactFeedback.impactOccurred()
+                    navigatePath.append(.game(.host))
                 } label: {
                     Text("ゲームを開始する")
                         .font(Font.custom("Mimi_font-Regular", size: 24))
                         .foregroundColor(.white) // 白文字に設定
                         .padding() // 内側に余白を追加
                         .frame(maxWidth: .infinity) // 横幅を最大に調整
-                        .background(Color.black) // 背景を黒に設定
+                        .background(hostViewModel.sessionState != .connected ? Color.gray : Color.black) // 背景を黒に設定
                         .cornerRadius(10) // 角を丸くする
                         .padding(.horizontal, 20) // 横方向に余白を追加
                 }
-
+                .disabled(hostViewModel.sessionState != .connected)
             }
             .padding()
         }
-        .alert(isPresented: $showNotPreparedAleart, content: {
-            Alert(
-                title: Text("まだ準備できてないよん"),
-                primaryButton: .default(Text("わかった"), action: {
-                    showNotPreparedAleart = false
-                }),
-                secondaryButton: .cancel(Text("ちょっと待つよ"), action: {
-                    showNotPreparedAleart = false
-                })
-            )
-        })
     }
 }

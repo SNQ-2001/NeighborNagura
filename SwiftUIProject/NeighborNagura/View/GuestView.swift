@@ -49,9 +49,9 @@ struct GuestView: View {
                 })
             )
         })
-        .onChange(of: guestViewModel.isGameStart) {
-            if (guestViewModel.isGameStart) {
-                navigatePath.append(.game)
+        .onChange(of: guestViewModel.userRole) {
+            if let userRole = guestViewModel.userRole {
+                navigatePath.append(.game(userRole))
             }
         }
     }
