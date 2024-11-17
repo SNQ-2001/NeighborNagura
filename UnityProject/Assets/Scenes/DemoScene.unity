@@ -2081,9 +2081,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Camera: {fileID: 281689407}
   m_ForceManagerPrefab: {fileID: 6566964892579345953, guid: eb3399c5f42df4083948d89bcf300558, type: 3}
-  m_FirePrefab: {fileID: 71521901878124746, guid: 4b603c980946642558c4e0c48ecfe7fd, type: 3}
   m_FireParent: {fileID: 21344590}
   m_HolePrefab: {fileID: 2828499572986607283, guid: 2744ca9aed0824fac86c91036a889d81, type: 3}
+  m_FirePrefab: {fileID: 1833863109802629502, guid: b25ce2a13891a40aea3ccd6d5c46da47, type: 3}
   m_ChangeSceneButton: {fileID: 1555853138}
   m_AccelerationText: {fileID: 1389917829}
 --- !u!1 &2101265415

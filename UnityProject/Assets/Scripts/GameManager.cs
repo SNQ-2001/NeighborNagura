@@ -8,9 +8,9 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private Camera m_Camera;
     [SerializeField] private ForceManager m_ForceManagerPrefab;
-    [SerializeField] private GameObject m_FirePrefab;
     [SerializeField] private Transform m_FireParent;
     [SerializeField] private HoleCollisionController m_HolePrefab;
+    [SerializeField] private FireCollisionController m_FirePrefab;
     
     [SerializeField] private Button m_ChangeSceneButton;
     // [SerializeField] private Button m_LeftButton;
@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     private bool m_HoleEnd = false;
 
     private HoleCollisionController m_Hole;
-    private List<GameObject> m_FireObjects = new List<GameObject>();
+    private List<FireCollisionController> m_FireObjects = new List<FireCollisionController>();
     
     void Awake()
     {
@@ -42,20 +42,35 @@ public class GameManager : MonoBehaviour
             {
                 for (int j = 0; j < 25; j++)
                 {
-                    GameObject tempFire = Instantiate(m_FirePrefab, m_FireParent);
+                    FireCollisionController tempFire = Instantiate(m_FirePrefab, m_FireParent);
                     m_FireObjects.Add(tempFire);
-                    tempFire.transform.position = new Vector3(j - 12f, 0.5f, (21f - i) + 0.5f);
+                    tempFire.transform.position = new Vector3(j - 12f, 0.1f, (21f - i) + 0.5f);
+
+                    tempFire.OnFire.Subscribe(info =>
+                    {
+                        OnFire(info.FirePosition);
+                    }).AddTo(this);
                 }
             }
             else
             {
-                GameObject tempFire0 = Instantiate(m_FirePrefab, m_FireParent);
-                tempFire0.transform.position = new Vector3(-12f, 0.5f, (21f - i) + 0.5f);
-                GameObject tempFire1 = Instantiate(m_FirePrefab, m_FireParent);
-                tempFire1.transform.position = new Vector3(12f, 0.5f, (21f - i) + 0.5f);
+                FireCollisionController tempFire0 = Instantiate(m_FirePrefab, m_FireParent);
+                tempFire0.transform.position = new Vector3(-12f, 0.1f, (21f - i) + 0.5f);
+                FireCollisionController tempFire1 = Instantiate(m_FirePrefab, m_FireParent);
+                tempFire1.transform.position = new Vector3(12f, 0.1f, (21f - i) + 0.5f);
                 
                 m_FireObjects.Add(tempFire0);
                 m_FireObjects.Add(tempFire1);
+                
+                tempFire0.OnFire.Subscribe(info =>
+                {
+                    OnFire(info.FirePosition);
+                }).AddTo(this);
+                
+                tempFire1.OnFire.Subscribe(info =>
+                {
+                    OnFire(info.FirePosition);
+                }).AddTo(this);
             }
         }
         
@@ -83,11 +98,14 @@ public class GameManager : MonoBehaviour
         {
             if (m_HoleEnd) return;
             
-            Debug.Log("staying");
             if (holeCollisionInfo.StaySeconds >= 3f)
             {
                 m_HoleEnd = true;
-                Debug.Log("nice!");
+                OnClear(holeCollisionInfo);
+            }
+            else
+            {
+                OnStay(holeCollisionInfo);
             }
         }).AddTo(this);
     }
@@ -102,6 +120,24 @@ public class GameManager : MonoBehaviour
         );
         
         m_AccelerationText.text = stateVector.ToString();
+    }
+
+    private void OnFire(Vector3 position)
+    {
+        Debug.Log("on fire");
+        //エフェクトなど
+    }
+
+    private void OnClear(HoleCollisionController.HoleCollisionInfo info)
+    {
+        Debug.Log("on clear");
+        //エフェクトなど
+    }
+
+    private void OnStay(HoleCollisionController.HoleCollisionInfo info)
+    {
+        Debug.Log("on stay");
+        //エフェクトなど
     }
 
     private Vector3 CalcCameraPosition(int userRole)
