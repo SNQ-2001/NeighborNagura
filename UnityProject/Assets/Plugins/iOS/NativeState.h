@@ -4,6 +4,8 @@ struct NativeState {
     const double x;
     const double y;
     const double z;
+    const double positionX;
+    const double positionY;
     const int userRole;
 };
 

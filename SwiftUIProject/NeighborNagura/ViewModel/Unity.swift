@@ -100,11 +100,10 @@ class Unity: SetsNativeState, ObservableObject  {
     }
 
     @Published var ballAcceleration: BallAcceleration = .init(x: 0, y: 0, z: 0) { didSet { stateDidSet() } }
+    @Published var ballPosition: BallPosition = .init(x: 0, y: 0) { didSet { stateDidSet() } }
     @Published var userRole: UserRole = .host { didSet { stateDidSet() } }
     @Published var isGameClear: Bool = false
     @Published var isGameOver: Bool = false
-
-    @Published var ballPosition: BallPosition
 
     private func stateDidSet() {
         //xとzを逆にしている
@@ -112,6 +111,8 @@ class Unity: SetsNativeState, ObservableObject  {
             x: ballAcceleration.x,
             y: ballAcceleration.y,
             z: ballAcceleration.z,
+            positionX: Double(ballPosition.x),
+            positionY: Double(ballPosition.y),
             userRole: Int32(userRole.rawValue)
         )
         setNativeState?(nativeState)
