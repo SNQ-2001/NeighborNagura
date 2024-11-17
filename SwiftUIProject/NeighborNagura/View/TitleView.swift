@@ -30,7 +30,17 @@ struct TitleView: View {
                     Text("ハラハラたいぞうゲーム")
                         .font(Font.custom("Mimi_font-Regular", size: 42))
                         .foregroundColor(.black) // 黒文字に設定
-
+                    Button {
+                        navigatePath.append(.treasure)
+                    } label: {
+                        Text("宝")
+                            .font(Font.custom("Mimi_font-Regular", size: 32))
+                            .foregroundColor(.white) // 白文字
+                            .padding()
+                            .background(Color.black) // 黒背景
+                            .cornerRadius(10) // 角丸
+                            .padding(.horizontal, 20) // 横方向の余白
+                    }
                     // ホストボタン
                     Button {
                         let impactFeedback = UIImpactFeedbackGenerator(style: .medium)
@@ -69,6 +79,7 @@ struct TitleView: View {
                 case .guest: GuestView(navigatePath: $navigatePath, gameState: gameState)
                 case .game: GameView(navigatePath: $navigatePath, gameState: gameState)
                 case .result: ResultView(navigatePath: $navigatePath)
+                case .treasure: TreasureAnimationView(navigatePath: $navigatePath)
                 }
             }
         }

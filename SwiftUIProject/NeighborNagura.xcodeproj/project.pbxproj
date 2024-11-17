@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ABAD0EE82CE948DF006BEDD7 /* Treasure.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAD0EE72CE948D9006BEDD7 /* Treasure.swift */; };
 		ABB692272CE8F69500F26ABB /* character_yusha_woman_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = ABB692262CE8F69500F26ABB /* character_yusha_woman_blue.png */; };
 		B50DC73A2B4151780013AB7B /* UIViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50DC7392B4151780013AB7B /* UIViewContainer.swift */; };
 		B53E02802B38E110008D4E31 /* UnityFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B53E027E2B38E110008D4E31 /* UnityFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -45,6 +46,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		ABAD0EE72CE948D9006BEDD7 /* Treasure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Treasure.swift; sourceTree = "<group>"; };
 		ABB692262CE8F69500F26ABB /* character_yusha_woman_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = character_yusha_woman_blue.png; sourceTree = "<group>"; };
 		B50DC7392B4151780013AB7B /* UIViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewContainer.swift; sourceTree = "<group>"; };
 		B53E027E2B38E110008D4E31 /* UnityFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UnityFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -148,6 +150,7 @@
 		E43BB0522CE8E94300ACE788 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				ABAD0EE72CE948D9006BEDD7 /* Treasure.swift */,
 				B50DC7392B4151780013AB7B /* UIViewContainer.swift */,
 				E43BB0582CE8E9BC00ACE788 /* ResultView.swift */,
 				E43BB05A2CE8E9C200ACE788 /* HostView.swift */,
@@ -278,6 +281,7 @@
 				E43BB05F2CE8E9CC00ACE788 /* GameView.swift in Sources */,
 				B75964542CE9185A00ABCBDD /* PeerDevice.swift in Sources */,
 				E43BB0572CE8E9B700ACE788 /* TitleView.swift in Sources */,
+				ABAD0EE82CE948DF006BEDD7 /* Treasure.swift in Sources */,
 				E43BB05D2CE8E9C700ACE788 /* GuestView.swift in Sources */,
 				E43BB0592CE8E9BC00ACE788 /* ResultView.swift in Sources */,
 				E43BB05B2CE8E9C200ACE788 /* HostView.swift in Sources */,
