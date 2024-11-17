@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5500928297236984816}
   - component: {fileID: 1245090094403458102}
   - component: {fileID: 8920964813316336717}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4911,7 +4911,7 @@ GameObject:
   - component: {fileID: 7282998224308953451}
   - component: {fileID: 1540882151911348197}
   - component: {fileID: 6281601689232336591}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9820,7 +9820,7 @@ GameObject:
   - component: {fileID: 7900065424776864945}
   - component: {fileID: 570832250925526149}
   - component: {fileID: 2181954967501733166}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Flash_round_ellow
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private HoleCollisionController m_HolePrefab;
     [SerializeField] private FireCollisionController m_FirePrefab;
     [SerializeField] private EffectManager m_EffectManager;
+    [SerializeField] private GameObject m_ClearCover;
     
     [SerializeField] private Button m_ChangeSceneButton;
     // [SerializeField] private Button m_LeftButton;
@@ -31,6 +32,8 @@ public class GameManager : MonoBehaviour
     
     void Awake()
     {
+        m_ClearCover.SetActive(false);
+        
         //適当な場所にホール生成
         m_Hole = Instantiate(m_HolePrefab);
         m_Hole.transform.position = new Vector3(
@@ -138,6 +141,9 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("on fire");
         //エフェクトなど
+#if !UNITY_EDITOR        
+        NativeStateManager.GameOverUnity();
+#endif
     }
 
     private async UniTask OnClear(HoleCollisionController.HoleCollisionInfo info)
@@ -146,6 +152,7 @@ public class GameManager : MonoBehaviour
         m_ForceManager.gameObject.SetActive(false);
         //エフェクトなど
         m_EffectManager.StopStayEffect(info.HolePosition);
+        m_ClearCover.SetActive(true);
         await UniTask.WaitForSeconds(0.2f);
         await m_EffectManager.PlayClear(info.HolePosition);
         m_OnClearFlag = true;
