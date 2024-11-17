@@ -10,7 +10,6 @@ import SwiftUI
 
 final class GameViewModel: ObservableObject {
     func sendGameBallAccelerationMessage(session: MCSession, ballAcceleration: BallAcceleration) {
-        let ballAcceleration = BallAcceleration(x: 0, y: 0, z: 0)
         let encode = JSONEncoder()
         guard
             let encodedBallAcceleration = try? encode.encode(ballAcceleration),
