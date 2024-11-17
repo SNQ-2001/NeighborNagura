@@ -40,7 +40,7 @@ public class HoleCollisionController : MonoBehaviour
 
     void Update()
     {
-        if (m_StayCounter >= 3f && !m_StayEnd)
+        if (m_StayCounter >= 5f && !m_StayEnd)
         {
             m_StaySubject.OnNext(new HoleCollisionInfo(
                 m_StayCounter,

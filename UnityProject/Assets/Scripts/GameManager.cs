@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
         //適当な場所にホール生成
         m_Hole = Instantiate(m_HolePrefab);
         m_Hole.transform.position = new Vector3(
-            Random.Range(-9f, 9f),
+            Random.Range(-6.5f, 6.5f),
             0.1f,
             Random.Range(-18.5f, 18.5f)
         );
@@ -46,11 +46,11 @@ public class GameManager : MonoBehaviour
         {
             if (i == 0 || i == 43)
             {
-                for (int j = 0; j < 25; j++)
+                for (int j = 0; j < 20; j++)
                 {
                     FireCollisionController tempFire = Instantiate(m_FirePrefab, m_FireParent);
                     m_FireObjects.Add(tempFire);
-                    tempFire.transform.position = new Vector3(j - 12f, 0.1f, (21f - i) + 0.5f);
+                    tempFire.transform.position = new Vector3(j - 9f - 0.5f, 0.1f, (21f - i) + 0.5f);
 
                     tempFire.OnFire.Subscribe(info =>
                     {
@@ -61,9 +61,9 @@ public class GameManager : MonoBehaviour
             else
             {
                 FireCollisionController tempFire0 = Instantiate(m_FirePrefab, m_FireParent);
-                tempFire0.transform.position = new Vector3(-12f, 0.1f, (21f - i) + 0.5f);
+                tempFire0.transform.position = new Vector3(-9f - 0.5f, 0.1f, (21f - i) + 0.5f);
                 FireCollisionController tempFire1 = Instantiate(m_FirePrefab, m_FireParent);
-                tempFire1.transform.position = new Vector3(12f, 0.1f, (21f - i) + 0.5f);
+                tempFire1.transform.position = new Vector3(9f + 0.5f, 0.1f, (21f - i) + 0.5f);
                 
                 m_FireObjects.Add(tempFire0);
                 m_FireObjects.Add(tempFire1);
