@@ -125,6 +125,24 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+#if !UNITY_EDITOR
+        if (m_IsServer)
+        {
+            NativeStateManager.SetHostPositionUnity(
+                m_ForceManager.BallTransform.position.x,
+                m_ForceManager.BallTransform.position.z
+            );
+        }
+        else
+        {
+            m_ForceManager.BallTransform.position = new Vector3(
+                (float)NativeStateManager.State.positionX,
+                0.1f,
+                (float)NativeStateManager.State.positionY
+            );
+        }
+#endif
+        
         NativeState state = NativeStateManager.State;
         Vector3 stateVector = new Vector3(
             (float)state.x,
