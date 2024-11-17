@@ -20,6 +20,8 @@ class GameState: ObservableObject, Equatable {
     @Published var ballState: BallState? = nil
     @Published var phase: GamePhase = GamePhase.prepare
     
+    @Published var ballAcceleration: BallAcceleration = .init(x: 0, y: 0, z: 0)
+    
     func setProperties(_session: MCSession, _ballState: BallState) {
         self.session = _session
         self.ballState = _ballState
