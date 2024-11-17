@@ -12,6 +12,6 @@ enum NavigationDestination: Hashable {
     case host
     case guest
     case game(Unity.UserRole)
-    case result
-    case treasure
+    case gameClear
+    case gameOver
 }

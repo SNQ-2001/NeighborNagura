@@ -1,5 +1,5 @@
 //
-//  ResultView.swift
+//  GameOverView.swift
 //  UnitySwiftUI
 //
 //  Created by Taishin Miyamoto on 2024/11/16.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ResultView: View {
+struct GameOverView: View {
     @Binding var navigatePath: [NavigationDestination]
 
     var body: some View {
@@ -24,8 +24,11 @@ struct ResultView: View {
                           y: UIScreen.main.bounds.height / 2 - 50)
 
             // タイトルに戻るボタン
-            VStack {
-                Spacer()
+            VStack(spacing: 30) {
+                Text("ゲームオーバー")
+                    .font(Font.custom("Mimi_font-Regular", size: 42))
+                    .foregroundColor(.black) // 黒文字に設定
+
                 Button {
                     let impactFeedback = UIImpactFeedbackGenerator(style: .medium)
                     impactFeedback.impactOccurred()
@@ -38,7 +41,6 @@ struct ResultView: View {
                         .background(Color.black) // ボタン背景を黒に変更
                         .cornerRadius(10) // 角を丸める
                 }
-                Spacer()
             }
         }
         .navigationBarBackButtonHidden()
