@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UniRx;
+using Cysharp.Threading.Tasks;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Transform m_FireParent;
     [SerializeField] private HoleCollisionController m_HolePrefab;
     [SerializeField] private FireCollisionController m_FirePrefab;
+    [SerializeField] private EffectManager m_EffectManager;
     
     [SerializeField] private Button m_ChangeSceneButton;
     // [SerializeField] private Button m_LeftButton;
@@ -22,6 +24,7 @@ public class GameManager : MonoBehaviour
     private ForceManager m_ForceManager;
     private bool m_IsServer;
     private bool m_HoleEnd = false;
+    private bool m_OnClearFlag = false;
 
     private HoleCollisionController m_Hole;
     private List<FireCollisionController> m_FireObjects = new List<FireCollisionController>();
@@ -97,21 +100,30 @@ public class GameManager : MonoBehaviour
         m_Hole.OnStaySubject.Subscribe(holeCollisionInfo =>
         {
             if (m_HoleEnd) return;
-            
-            if (holeCollisionInfo.StaySeconds >= 3f)
-            {
-                m_HoleEnd = true;
-                OnClear(holeCollisionInfo);
-            }
-            else
-            {
-                OnStay(holeCollisionInfo);
-            }
+            m_HoleEnd = true;
+            OnClear(holeCollisionInfo).Forget();
+        }).AddTo(this);
+
+        m_Hole.OnEnterSubject.Subscribe(info =>
+        {
+            OnEnter(info);
+        }).AddTo(this);
+
+        m_Hole.OnAwaySubject.Subscribe(info =>
+        {
+            OnAway(info);
         }).AddTo(this);
     }
 
     void Update()
     {
+        if (m_OnClearFlag)
+        {
+#if !UNITY_EDITOR
+            NativeStateManager.GameClearUnity();
+#endif
+        }
+        
         NativeState state = NativeStateManager.State;
         Vector3 stateVector = new Vector3(
             (float)state.x,
@@ -128,16 +140,28 @@ public class GameManager : MonoBehaviour
         //エフェクトなど
     }
 
-    private void OnClear(HoleCollisionController.HoleCollisionInfo info)
+    private async UniTask OnClear(HoleCollisionController.HoleCollisionInfo info)
     {
         Debug.Log("on clear");
+        m_ForceManager.gameObject.SetActive(false);
         //エフェクトなど
+        m_EffectManager.StopStayEffect(info.HolePosition);
+        await UniTask.WaitForSeconds(0.2f);
+        await m_EffectManager.PlayClear(info.HolePosition);
+        m_OnClearFlag = true;
     }
 
-    private void OnStay(HoleCollisionController.HoleCollisionInfo info)
+    private void OnEnter(HoleCollisionController.HoleCollisionInfo info)
     {
-        Debug.Log("on stay");
+        Debug.Log("on enter");
         //エフェクトなど
+        m_EffectManager.StartStayEffect(info.HolePosition);
+    }
+
+    private void OnAway(HoleCollisionController.HoleCollisionInfo info)
+    {
+        Debug.Log("on away");
+        m_EffectManager.StopStayEffect(info.HolePosition);
     }
 
     private Vector3 CalcCameraPosition(int userRole)
