@@ -12,6 +12,8 @@ public class ForceManager : MonoBehaviour
     private GameObject m_Ball;
     private Rigidbody m_BallRigidBody;
     private Vector3 m_Acceleration = Vector3.zero;
+
+    public Vector3 BallPosition => m_Ball.transform.position;
     
     void Awake()
     {
