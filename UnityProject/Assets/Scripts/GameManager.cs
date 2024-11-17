@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,7 +10,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private ForceManager m_ForceManagerPrefab;
     [SerializeField] private GameObject m_FirePrefab;
     [SerializeField] private Transform m_FireParent;
-    [SerializeField] private GameObject m_HolePrefab;
+    [SerializeField] private HoleCollisionController m_HolePrefab;
     
     [SerializeField] private Button m_ChangeSceneButton;
     // [SerializeField] private Button m_LeftButton;
@@ -23,8 +21,9 @@ public class GameManager : MonoBehaviour
 
     private ForceManager m_ForceManager;
     private bool m_IsServer;
+    private bool m_HoleEnd = false;
 
-    private GameObject m_Hole;
+    private HoleCollisionController m_Hole;
     private List<GameObject> m_FireObjects = new List<GameObject>();
     
     void Awake()
@@ -78,6 +77,18 @@ public class GameManager : MonoBehaviour
         m_ChangeSceneButton.OnClickAsObservable().Subscribe((_) =>
         {
             NativeStateManager.GameClearUnity();
+        }).AddTo(this);
+
+        m_Hole.OnStaySubject.Subscribe(holeCollisionInfo =>
+        {
+            if (m_HoleEnd) return;
+            
+            Debug.Log("staying");
+            if (holeCollisionInfo.StaySeconds >= 3f)
+            {
+                m_HoleEnd = true;
+                Debug.Log("nice!");
+            }
         }).AddTo(this);
     }
 

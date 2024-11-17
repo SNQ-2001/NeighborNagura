@@ -6,12 +6,24 @@ using UniRx;
 
 public class HoleCollisionController : MonoBehaviour
 {
+    public struct HoleCollisionInfo
+    {
+        public float StaySeconds;
+        public Vector3 HolePosition;
+
+        public HoleCollisionInfo(float staySeconds, Vector3 holePosition)
+        {
+            StaySeconds = staySeconds;
+            HolePosition = holePosition;
+        }
+    }
+    
     private bool m_Staying = false;
     private bool m_StayEnd = false;
     private float m_StayCounter = 0f;
     
-    private Subject<Vector3> m_StaySubject = new Subject<Vector3>();
-    public IObservable<Vector3> OnStaySubject => m_StaySubject;
+    private Subject<HoleCollisionInfo> m_StaySubject = new Subject<HoleCollisionInfo>();
+    public IObservable<HoleCollisionInfo> OnStaySubject => m_StaySubject;
     
     void Awake()
     {
@@ -24,14 +36,20 @@ public class HoleCollisionController : MonoBehaviour
     {
         if (m_StayCounter >= 3f && !m_StayEnd)
         {
-            Debug.Log("stay 3 seconds");
-            m_StaySubject.OnNext(transform.position);
+            // m_StaySubject.OnNext(new HoleCollisionInfo(
+            //     m_StayCounter,
+            //     transform.position
+            // ));
             m_StayEnd = true;
         }
 
         if (m_Staying)
         {
             m_StayCounter += Time.deltaTime;
+            m_StaySubject.OnNext(new HoleCollisionInfo(
+                m_StayCounter,
+                transform.position
+            ));
         }
         else if(m_StayCounter != 0f)
         {
