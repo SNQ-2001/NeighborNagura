@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		ABAD0EE82CE948DF006BEDD7 /* Treasure.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAD0EE72CE948D9006BEDD7 /* Treasure.swift */; };
+		9ECE23DB2CE9910C0025699D /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECE23DA2CE9910C0025699D /* GameOverView.swift */; };
+		9ECE23DC2CE9910C0025699D /* GameClearView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECE23D92CE9910C0025699D /* GameClearView.swift */; };
 		ABB692272CE8F69500F26ABB /* character_yusha_woman_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = ABB692262CE8F69500F26ABB /* character_yusha_woman_blue.png */; };
 		B50DC73A2B4151780013AB7B /* UIViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50DC7392B4151780013AB7B /* UIViewContainer.swift */; };
 		B53E02802B38E110008D4E31 /* UnityFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B53E027E2B38E110008D4E31 /* UnityFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -22,7 +23,6 @@
 		B759645A2CE9187600ABCBDD /* GuestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75964592CE9187600ABCBDD /* GuestViewModel.swift */; };
 		B759645C2CE9187A00ABCBDD /* HostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B759645B2CE9187A00ABCBDD /* HostViewModel.swift */; };
 		E43BB0572CE8E9B700ACE788 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43BB0562CE8E9B700ACE788 /* TitleView.swift */; };
-		E43BB0592CE8E9BC00ACE788 /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43BB0582CE8E9BC00ACE788 /* ResultView.swift */; };
 		E43BB05B2CE8E9C200ACE788 /* HostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43BB05A2CE8E9C200ACE788 /* HostView.swift */; };
 		E43BB05D2CE8E9C700ACE788 /* GuestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43BB05C2CE8E9C700ACE788 /* GuestView.swift */; };
 		E43BB05F2CE8E9CC00ACE788 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43BB05E2CE8E9CC00ACE788 /* GameView.swift */; };
@@ -46,7 +46,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		ABAD0EE72CE948D9006BEDD7 /* Treasure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Treasure.swift; sourceTree = "<group>"; };
+		9ECE23D92CE9910C0025699D /* GameClearView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameClearView.swift; sourceTree = "<group>"; };
+		9ECE23DA2CE9910C0025699D /* GameOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
 		ABB692262CE8F69500F26ABB /* character_yusha_woman_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = character_yusha_woman_blue.png; sourceTree = "<group>"; };
 		B50DC7392B4151780013AB7B /* UIViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewContainer.swift; sourceTree = "<group>"; };
 		B53E027E2B38E110008D4E31 /* UnityFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UnityFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -62,7 +63,6 @@
 		B75964592CE9187600ABCBDD /* GuestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestViewModel.swift; sourceTree = "<group>"; };
 		B759645B2CE9187A00ABCBDD /* HostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostViewModel.swift; sourceTree = "<group>"; };
 		E43BB0562CE8E9B700ACE788 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
-		E43BB0582CE8E9BC00ACE788 /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		E43BB05A2CE8E9C200ACE788 /* HostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostView.swift; sourceTree = "<group>"; };
 		E43BB05C2CE8E9C700ACE788 /* GuestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestView.swift; sourceTree = "<group>"; };
 		E43BB05E2CE8E9CC00ACE788 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
@@ -150,9 +150,9 @@
 		E43BB0522CE8E94300ACE788 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				ABAD0EE72CE948D9006BEDD7 /* Treasure.swift */,
+				9ECE23D92CE9910C0025699D /* GameClearView.swift */,
+				9ECE23DA2CE9910C0025699D /* GameOverView.swift */,
 				B50DC7392B4151780013AB7B /* UIViewContainer.swift */,
-				E43BB0582CE8E9BC00ACE788 /* ResultView.swift */,
 				E43BB05A2CE8E9C200ACE788 /* HostView.swift */,
 				E43BB0562CE8E9B700ACE788 /* TitleView.swift */,
 				E43BB05C2CE8E9C700ACE788 /* GuestView.swift */,
@@ -272,6 +272,8 @@
 				B50DC73A2B4151780013AB7B /* UIViewContainer.swift in Sources */,
 				B53E02832B38E664008D4E31 /* Unity.swift in Sources */,
 				B57974CB2B38D8CC00A28CAF /* NeighborNaguraApp.swift in Sources */,
+				9ECE23DB2CE9910C0025699D /* GameOverView.swift in Sources */,
+				9ECE23DC2CE9910C0025699D /* GameClearView.swift in Sources */,
 				E43BB0612CE8E9FF00ACE788 /* NavigationDestination.swift in Sources */,
 				B75964562CE9185F00ABCBDD /* PermissionRequest.swift in Sources */,
 				B75964522CE9185500ABCBDD /* P2PMessage.swift in Sources */,
@@ -281,9 +283,7 @@
 				E43BB05F2CE8E9CC00ACE788 /* GameView.swift in Sources */,
 				B75964542CE9185A00ABCBDD /* PeerDevice.swift in Sources */,
 				E43BB0572CE8E9B700ACE788 /* TitleView.swift in Sources */,
-				ABAD0EE82CE948DF006BEDD7 /* Treasure.swift in Sources */,
 				E43BB05D2CE8E9C700ACE788 /* GuestView.swift in Sources */,
-				E43BB0592CE8E9BC00ACE788 /* ResultView.swift in Sources */,
 				E43BB05B2CE8E9C200ACE788 /* HostView.swift in Sources */,
 				B759645A2CE9187600ABCBDD /* GuestViewModel.swift in Sources */,
 			);
