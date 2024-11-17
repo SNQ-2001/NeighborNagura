@@ -105,11 +105,10 @@ class Unity: SetsNativeState, ObservableObject  {
     @Published var isGameOver: Bool = false
 
     private func stateDidSet() {
-        // x と zを入れ替えている
         let nativeState = NativeState(
-            x: ballAcceleration.z,
+            x: ballAcceleration.x,
             y: ballAcceleration.y,
-            z: ballAcceleration.x,
+            z: ballAcceleration.z,
             userRole: Int32(userRole.rawValue)
         )
         setNativeState?(nativeState)
