@@ -23,5 +23,5 @@ void GameOver() {
 }
 
 void SetHostPosition(float x, float y) {
-    [nativeStateSetter setHostPosition:x y:y]
+    [nativeStateSetter setHostPosition:x y:y];
 }
