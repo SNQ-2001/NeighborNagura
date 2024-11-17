@@ -105,10 +105,11 @@ class Unity: SetsNativeState, ObservableObject  {
     @Published var isGameOver: Bool = false
 
     private func stateDidSet() {
+        //xとzを逆にしている
         let nativeState = NativeState(
-            x: ballAcceleration.x,
+            x: ballAcceleration.z,
             y: ballAcceleration.y,
-            z: ballAcceleration.z,
+            z: ballAcceleration.x,
             userRole: Int32(userRole.rawValue)
         )
         setNativeState?(nativeState)
