@@ -27,10 +27,10 @@ struct TitleView: View {
 
                 VStack(spacing: 30) {
                     // タイトルを黒文字に変更
-                    Text("ハラハラたいぞうゲーム")
+                    Text("HARADAの国の\n幻の秘宝")
                         .font(Font.custom("Mimi_font-Regular", size: 42))
                         .foregroundColor(.black) // 黒文字に設定
-
+                        .multilineTextAlignment(.center) // 中央揃えに設定
                     // ゆうしゃボタン
                     Button {
                         let impactFeedback = UIImpactFeedbackGenerator(style: .medium)
@@ -46,7 +46,7 @@ struct TitleView: View {
                             .padding(.horizontal, 20) // 横方向の余白
                     }
 
-                    // ゲストボタン
+                    // メンバーボタン
                     Button {
                         let impactFeedback = UIImpactFeedbackGenerator(style: .medium)
                         impactFeedback.impactOccurred()

@@ -39,12 +39,12 @@ struct GuestView: View {
         .navigationBarBackButtonHidden() // 戻るボタンを非表示
         .alert(item: $guestViewModel.permissionRequest, content: { request in
             Alert(
-                title: Text("Do you want to join \(request.peerId.displayName)"),
-                primaryButton: .default(Text("Yes"), action: {
+                title: Text("さんかしますか？ \(request.peerId.displayName)"),
+                primaryButton: .default(Text("はい"), action: {
                     request.onRequest(true)
                     guestViewModel.join(peer: PeerDevice(peerId: request.peerId))
                 }),
-                secondaryButton: .cancel(Text("No"), action: {
+                secondaryButton: .cancel(Text("いいえ"), action: {
                     request.onRequest(false)
                 })
             )
