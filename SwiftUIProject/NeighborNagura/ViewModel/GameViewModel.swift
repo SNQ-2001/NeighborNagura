@@ -27,6 +27,24 @@ final class GameViewModel: ObservableObject {
         try? session.send(messageData, toPeers: session.connectedPeers, with: .reliable)
     }
     
+    func sendGameBallPositionMessage(session: MCSession, ballPosition: BallPosition) {
+        let encode = JSONEncoder()
+        guard
+            let encodedBallPosition = try? encode.encode(ballPosition),
+            let jsonString = String(data: encodedBallPosition, encoding: .utf8)
+        else {
+            return
+        }
+        guard let messageData = P2PMessage(
+            type: .gameBallPositionMessage,
+            jsonData: jsonString
+        ).toSendMessage().data(using: .utf8) else {
+            return
+        }
+        // 相手に送信
+        try? session.send(messageData, toPeers: session.connectedPeers, with: .reliable)
+    }
+    
     func gameFinish(gameState: GameState) {
         gameState.updatePhase(phase: .finished)
         sendGameFinishMessage(session: gameState.session!)

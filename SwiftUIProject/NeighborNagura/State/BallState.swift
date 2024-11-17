@@ -19,18 +19,9 @@ class BallState: Codable, Equatable {
     }
 }
 
-class BallPosition: Decodable, Encodable {
-    var x: Int
-    var y: Int
-    
-    init(x: Int, y: Int) {
-        self.x = x
-        self.y = y
-    }
-    
-    static func ==(lhs: BallPosition, rhs: BallPosition) -> Bool {
-        return lhs.x == rhs.x && lhs.y == rhs.y
-    }
+struct BallPosition: Codable, Equatable {
+    var x: Double
+    var y: Double
 }
 
 struct BallAcceleration: Codable, Equatable {

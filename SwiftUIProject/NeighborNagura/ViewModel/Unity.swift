@@ -104,6 +104,8 @@ class Unity: SetsNativeState, ObservableObject  {
     @Published var isGameClear: Bool = false
     @Published var isGameOver: Bool = false
 
+    @Published var ballPosition: BallPosition
+
     private func stateDidSet() {
         //xとzを逆にしている
         let nativeState = NativeState(
@@ -121,6 +123,10 @@ class Unity: SetsNativeState, ObservableObject  {
 
     func gameOver() {
         isGameOver = true
+    }
+
+    func setHostPosition(x: Float, y: Float) {
+        ballPosition = .init(x: Double(x), y: Double(y))
     }
 
     /* When a Unity script calls the NativeState plugin's OnSetNativeState function this

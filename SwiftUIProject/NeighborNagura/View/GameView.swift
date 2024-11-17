@@ -64,9 +64,25 @@ struct GameView: View {
                 return
             }
         }
+        .onChange(of: unity.ballPosition) {
+            switch unity.userRole {
+            case .host:
+                gameViewModel.sendGameBallPositionMessage(
+                    session: gameState.session!,
+                    ballPosition: unity.ballPosition
+                )
+            case .client1, .client2, .client3:
+                return
+            }
+        }
         .onChange(of: gameState.ballAcceleration) {
             if unity.userRole != .host {
                 unity.ballAcceleration = gameState.ballAcceleration
+            }
+        }
+        .onChange(of: gameState.ballPosition) {
+            if unity.userRole != .host {
+                unity.ballPosition = gameState.ballPosition
             }
         }
         .onChange(of: unity.isGameClear) {

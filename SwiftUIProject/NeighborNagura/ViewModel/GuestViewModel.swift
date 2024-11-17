@@ -83,6 +83,15 @@ class GuestViewModel: NSObject, ObservableObject {
                 return
             }
             gameState.ballAcceleration = ballAcceleration
+        case .gameBallPositionMessage:
+            let decoder = JSONDecoder()
+            guard
+                let jsonData = _message.jsonData.data(using: .utf8),
+                let ballPosition = try? decoder.decode(BallPosition.self, from: jsonData)
+            else {
+                return
+            }
+            gameState.ballPosition = ballPosition
         case .gameFinishMessage:
             gameState.updatePhase(phase: .finished)
         }

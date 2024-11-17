@@ -11,7 +11,8 @@ enum MessageType: Int, Codable {
     case updateBallStateMessage = 0
     case gameStartMessage = 1
     case gameBallAccelerationMessage = 2
-    case gameFinishMessage = 3
+    case gameBallPositionMessage = 3
+    case gameFinishMessage = 4
 }
 
 class P2PMessage: Codable {
