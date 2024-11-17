@@ -27,6 +27,8 @@ struct ResultView: View {
             VStack {
                 Spacer()
                 Button {
+                    let impactFeedback = UIImpactFeedbackGenerator(style: .medium)
+                    impactFeedback.impactOccurred()
                     navigatePath.removeAll() // ナビゲーションスタックをリセット
                 } label: {
                     Text("タイトルにもどる")

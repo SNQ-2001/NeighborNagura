@@ -38,6 +38,14 @@ struct GameView: View {
                 }
             }
         }
+        .overlay{
+            Text("ユーザー: \(unity.userRole.rawValue)")
+                .foregroundColor(.white)
+                .padding()
+                .background(Color.black.opacity(0.5))
+                .cornerRadius(10)
+                .padding()
+        }
         .onAppear(perform: handleUnityStart)
         .onDisappear(perform: handleUnityStop)
         .onChange(of: [

@@ -88,7 +88,7 @@ class HostViewModel: NSObject, ObservableObject {
         for index in 0..<peerIds.count {
             guard let messageData = P2PMessage(
                 type: .gameStartMessage,
-                jsonData: (index + 1).description
+                jsonData: "@@\((index + 1).description)"
             ).toSendMessage().data(using: .utf8) else {
                 return
             }
