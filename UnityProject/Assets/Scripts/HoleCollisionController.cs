@@ -25,6 +25,12 @@ public class HoleCollisionController : MonoBehaviour
     private Subject<HoleCollisionInfo> m_StaySubject = new Subject<HoleCollisionInfo>();
     public IObservable<HoleCollisionInfo> OnStaySubject => m_StaySubject;
     
+    private Subject<HoleCollisionInfo> m_AwaySubject = new Subject<HoleCollisionInfo>();
+    public IObservable<HoleCollisionInfo> OnAwaySubject => m_AwaySubject;
+    
+    private Subject<HoleCollisionInfo> m_EnterSubject = new Subject<HoleCollisionInfo>();
+    public IObservable<HoleCollisionInfo> OnEnterSubject => m_EnterSubject;
+    
     void Awake()
     {
         m_Staying = false;
@@ -36,20 +42,16 @@ public class HoleCollisionController : MonoBehaviour
     {
         if (m_StayCounter >= 3f && !m_StayEnd)
         {
-            // m_StaySubject.OnNext(new HoleCollisionInfo(
-            //     m_StayCounter,
-            //     transform.position
-            // ));
+            m_StaySubject.OnNext(new HoleCollisionInfo(
+                m_StayCounter,
+                transform.position
+            ));
             m_StayEnd = true;
         }
 
         if (m_Staying)
         {
             m_StayCounter += Time.deltaTime;
-            m_StaySubject.OnNext(new HoleCollisionInfo(
-                m_StayCounter,
-                transform.position
-            ));
         }
         else if(m_StayCounter != 0f)
         {
@@ -62,7 +64,10 @@ public class HoleCollisionController : MonoBehaviour
         // 衝突したオブジェクトの名前を取得
         if (other.gameObject.CompareTag("Sphere"))
         {
-            Debug.Log("holeに衝突");
+            m_EnterSubject.OnNext(new HoleCollisionInfo(
+                m_StayCounter,
+                transform.position
+            ));
             m_Staying = true;
         }
     }
@@ -71,7 +76,10 @@ public class HoleCollisionController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Sphere"))
         {
-            Debug.Log("holeから離脱");
+            m_AwaySubject.OnNext(new HoleCollisionInfo(
+                m_StayCounter,
+                transform.position
+            ));
             m_Staying = false;
         }
     }

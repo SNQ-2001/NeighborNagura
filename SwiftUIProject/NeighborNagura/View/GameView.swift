@@ -22,7 +22,7 @@ struct GameView: View {
             } else if let unityView = unity.view.flatMap({ UIViewContainer(containee: $0) }) {
                 unityView.ignoresSafeArea()
             } else {
-                Text("エラー。発生していたら報告。")
+                Text("エラー。発生していたら報告してください。")
             }
         }
         .onAppear {
