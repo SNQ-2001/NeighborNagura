@@ -1,13 +1,16 @@
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UniRx;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private Camera m_Camera;
     [SerializeField] private ForceManager m_ForceManagerPrefab;
+    [SerializeField] private Transform m_FireParent;
+    [SerializeField] private HoleCollisionController m_HolePrefab;
+    [SerializeField] private FireCollisionController m_FirePrefab;
     
     [SerializeField] private Button m_ChangeSceneButton;
     // [SerializeField] private Button m_LeftButton;
@@ -18,9 +21,59 @@ public class GameManager : MonoBehaviour
 
     private ForceManager m_ForceManager;
     private bool m_IsServer;
+    private bool m_HoleEnd = false;
+
+    private HoleCollisionController m_Hole;
+    private List<FireCollisionController> m_FireObjects = new List<FireCollisionController>();
     
     void Awake()
     {
+        //適当な場所にホール生成
+        m_Hole = Instantiate(m_HolePrefab);
+        m_Hole.transform.position = new Vector3(
+            Random.Range(-9f, 9f),
+            0.1f,
+            Random.Range(-18.5f, 18.5f)
+        );
+        
+        for (int i = 0; i < 44; i++)
+        {
+            if (i == 0 || i == 43)
+            {
+                for (int j = 0; j < 25; j++)
+                {
+                    FireCollisionController tempFire = Instantiate(m_FirePrefab, m_FireParent);
+                    m_FireObjects.Add(tempFire);
+                    tempFire.transform.position = new Vector3(j - 12f, 0.1f, (21f - i) + 0.5f);
+
+                    tempFire.OnFire.Subscribe(info =>
+                    {
+                        OnFire(info.FirePosition);
+                    }).AddTo(this);
+                }
+            }
+            else
+            {
+                FireCollisionController tempFire0 = Instantiate(m_FirePrefab, m_FireParent);
+                tempFire0.transform.position = new Vector3(-12f, 0.1f, (21f - i) + 0.5f);
+                FireCollisionController tempFire1 = Instantiate(m_FirePrefab, m_FireParent);
+                tempFire1.transform.position = new Vector3(12f, 0.1f, (21f - i) + 0.5f);
+                
+                m_FireObjects.Add(tempFire0);
+                m_FireObjects.Add(tempFire1);
+                
+                tempFire0.OnFire.Subscribe(info =>
+                {
+                    OnFire(info.FirePosition);
+                }).AddTo(this);
+                
+                tempFire1.OnFire.Subscribe(info =>
+                {
+                    OnFire(info.FirePosition);
+                }).AddTo(this);
+            }
+        }
+        
         NativeState state = NativeStateManager.State;
         int userRole = state.userRole;
 
@@ -35,6 +88,31 @@ public class GameManager : MonoBehaviour
 
         m_Camera.transform.position = CalcCameraPosition(userRole);
         
+        m_ForceManager = Instantiate(m_ForceManagerPrefab);
+        m_ChangeSceneButton.OnClickAsObservable().Subscribe((_) =>
+        {
+            NativeStateManager.GameClearUnity();
+        }).AddTo(this);
+
+        m_Hole.OnStaySubject.Subscribe(holeCollisionInfo =>
+        {
+            if (m_HoleEnd) return;
+            
+            if (holeCollisionInfo.StaySeconds >= 3f)
+            {
+                m_HoleEnd = true;
+                OnClear(holeCollisionInfo);
+            }
+            else
+            {
+                OnStay(holeCollisionInfo);
+            }
+        }).AddTo(this);
+    }
+
+    void Update()
+    {
+        NativeState state = NativeStateManager.State;
         Vector3 stateVector = new Vector3(
             (float)state.x,
             (float)state.y,
@@ -42,8 +120,24 @@ public class GameManager : MonoBehaviour
         );
         
         m_AccelerationText.text = stateVector.ToString();
-        
-        m_ForceManager = Instantiate(m_ForceManagerPrefab);
+    }
+
+    private void OnFire(Vector3 position)
+    {
+        Debug.Log("on fire");
+        //エフェクトなど
+    }
+
+    private void OnClear(HoleCollisionController.HoleCollisionInfo info)
+    {
+        Debug.Log("on clear");
+        //エフェクトなど
+    }
+
+    private void OnStay(HoleCollisionController.HoleCollisionInfo info)
+    {
+        Debug.Log("on stay");
+        //エフェクトなど
     }
 
     private Vector3 CalcCameraPosition(int userRole)
@@ -54,7 +148,7 @@ public class GameManager : MonoBehaviour
             0f
         );
 
-        float upOffset = 5f;
+        float upOffset = 11f;
 
         if (userRole <= 1)
         {

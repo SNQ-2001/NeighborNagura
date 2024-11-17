@@ -122,6 +122,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &21344589
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 21344590}
+  m_Layer: 0
+  m_Name: FireParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &21344590
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 21344589}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &281689405
 GameObject:
   m_ObjectHideFlags: 0
@@ -2050,6 +2081,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Camera: {fileID: 281689407}
   m_ForceManagerPrefab: {fileID: 6566964892579345953, guid: eb3399c5f42df4083948d89bcf300558, type: 3}
+  m_FireParent: {fileID: 21344590}
+  m_HolePrefab: {fileID: 2828499572986607283, guid: 2744ca9aed0824fac86c91036a889d81, type: 3}
+  m_FirePrefab: {fileID: 1833863109802629502, guid: b25ce2a13891a40aea3ccd6d5c46da47, type: 3}
   m_ChangeSceneButton: {fileID: 1555853138}
   m_AccelerationText: {fileID: 1389917829}
 --- !u!1 &2101265415
@@ -2183,3 +2217,4 @@ SceneRoots:
   - {fileID: 381271607}
   - {fileID: 567687014}
   - {fileID: 449554962}
+  - {fileID: 21344590}
