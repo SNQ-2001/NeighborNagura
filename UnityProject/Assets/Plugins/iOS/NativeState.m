@@ -21,3 +21,7 @@ void GameClear() {
 void GameOver() {
     [nativeStateSetter gameOver];
 }
+
+void SetHostPosition(float x, float y) {
+    [nativeStateSetter setHostPosition:x y:y]
+}

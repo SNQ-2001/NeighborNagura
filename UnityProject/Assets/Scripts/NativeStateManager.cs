@@ -35,6 +35,9 @@ public static class NativeStateManager
 
     [System.Runtime.InteropServices.DllImport("__Internal")]
     private static extern void GameOver();
+    
+    [System.Runtime.InteropServices.DllImport("__Internal")]
+    private static extern void SetHostPosition(float x, float y);
 
     /* Reverse P/Invoke wrapped method to set state value. iOS is an AOT platform hence the decorator.
        See section on calling managed methods from native code: docs.unity3d.com/Manual/ScriptingRestrictions.html */
@@ -60,5 +63,10 @@ public static class NativeStateManager
         Debug.Log("GameOver");
         //Swiftのコールバック
         GameOver();
+    }
+
+    public static void SetHostPositionUnity(float x, float y)
+    {
+        
     }
 }
