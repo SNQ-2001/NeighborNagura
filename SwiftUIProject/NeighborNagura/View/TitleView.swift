@@ -33,6 +33,8 @@ struct TitleView: View {
 
                     // ホストボタン
                     Button {
+                        let impactFeedback = UIImpactFeedbackGenerator(style: .medium)
+                        impactFeedback.impactOccurred()
                         navigatePath.append(.host)
                     } label: {
                         Text("ホスト")
@@ -46,6 +48,8 @@ struct TitleView: View {
 
                     // ゲストボタン
                     Button {
+                        let impactFeedback = UIImpactFeedbackGenerator(style: .medium)
+                        impactFeedback.impactOccurred()
                         navigatePath.append(.guest)
                     } label: {
                         Text("ゲスト")

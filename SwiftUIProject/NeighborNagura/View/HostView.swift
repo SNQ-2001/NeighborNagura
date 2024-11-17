@@ -62,6 +62,8 @@ struct HostView: View {
                 // ボタン
                 Button {
                     hostViewModel.sendGameStartMessage()
+                    let impactFeedback = UIImpactFeedbackGenerator(style: .medium)
+                    impactFeedback.impactOccurred()
                     navigatePath.append(.game(.host))
                 } label: {
                     Text("ゲームを開始する")
