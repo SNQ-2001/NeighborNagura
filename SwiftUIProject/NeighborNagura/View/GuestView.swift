@@ -30,7 +30,7 @@ struct GuestView: View {
                           y: UIScreen.main.bounds.height / 2 - 50)
 
             // 中央のメッセージ
-            Text("ホストがゲームを開始するのを\nまっています")
+            Text("ゆうしゃがゲームを開始するのを\nまっています")
                 .font(Font.custom("Mimi_font-Regular", size: 24))
                 .foregroundColor(.black) // 黒文字
                 .multilineTextAlignment(.center) // 複数行の場合中央揃え

@@ -31,13 +31,13 @@ struct TitleView: View {
                         .font(Font.custom("Mimi_font-Regular", size: 42))
                         .foregroundColor(.black) // 黒文字に設定
 
-                    // ホストボタン
+                    // ゆうしゃボタン
                     Button {
                         let impactFeedback = UIImpactFeedbackGenerator(style: .medium)
                         impactFeedback.impactOccurred()
                         navigatePath.append(.host)
                     } label: {
-                        Text("ホスト")
+                        Text("ゆうしゃ")
                             .font(Font.custom("Mimi_font-Regular", size: 32))
                             .foregroundColor(.white) // 白文字
                             .padding()
@@ -52,7 +52,7 @@ struct TitleView: View {
                         impactFeedback.impactOccurred()
                         navigatePath.append(.guest)
                     } label: {
-                        Text("ゲスト")
+                        Text("メンバー")
                             .font(Font.custom("Mimi_font-Regular", size: 32))
                             .foregroundColor(.white) // 白文字
                             .padding()
