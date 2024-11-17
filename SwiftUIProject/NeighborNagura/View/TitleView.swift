@@ -27,9 +27,11 @@ struct TitleView: View {
 
                 VStack(spacing: 30) {
                     // タイトルを黒文字に変更
-                    Text("ハラハラたいぞうゲーム")
+                    Text("HARADAの国の\n幻の秘宝")
                         .font(Font.custom("Mimi_font-Regular", size: 42))
                         .foregroundColor(.black) // 黒文字に設定
+                        .multilineTextAlignment(.center) // 中央揃えに設定
+                    // ゆうしゃボタン
                     Button {
                         navigatePath.append(.treasure)
                     } label: {
@@ -47,7 +49,7 @@ struct TitleView: View {
                         impactFeedback.impactOccurred()
                         navigatePath.append(.host)
                     } label: {
-                        Text("ホスト")
+                        Text("ゆうしゃ")
                             .font(Font.custom("Mimi_font-Regular", size: 32))
                             .foregroundColor(.white) // 白文字
                             .padding()
@@ -56,13 +58,13 @@ struct TitleView: View {
                             .padding(.horizontal, 20) // 横方向の余白
                     }
 
-                    // ゲストボタン
+                    // メンバーボタン
                     Button {
                         let impactFeedback = UIImpactFeedbackGenerator(style: .medium)
                         impactFeedback.impactOccurred()
                         navigatePath.append(.guest)
                     } label: {
-                        Text("ゲスト")
+                        Text("メンバー")
                             .font(Font.custom("Mimi_font-Regular", size: 32))
                             .foregroundColor(.white) // 白文字
                             .padding()

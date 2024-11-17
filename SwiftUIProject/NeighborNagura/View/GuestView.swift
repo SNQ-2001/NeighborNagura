@@ -30,7 +30,7 @@ struct GuestView: View {
                           y: UIScreen.main.bounds.height / 2 - 50)
 
             // 中央のメッセージ
-            Text("ホストがゲームを開始するのを\nまっています")
+            Text("ゆうしゃがゲームを開始するのを\nまっています")
                 .font(Font.custom("Mimi_font-Regular", size: 24))
                 .foregroundColor(.black) // 黒文字
                 .multilineTextAlignment(.center) // 複数行の場合中央揃え
@@ -39,12 +39,12 @@ struct GuestView: View {
         .navigationBarBackButtonHidden() // 戻るボタンを非表示
         .alert(item: $guestViewModel.permissionRequest, content: { request in
             Alert(
-                title: Text("Do you want to join \(request.peerId.displayName)"),
-                primaryButton: .default(Text("Yes"), action: {
+                title: Text("さんかしますか？ \(request.peerId.displayName)"),
+                primaryButton: .default(Text("はい"), action: {
                     request.onRequest(true)
                     guestViewModel.join(peer: PeerDevice(peerId: request.peerId))
                 }),
-                secondaryButton: .cancel(Text("No"), action: {
+                secondaryButton: .cancel(Text("いいえ"), action: {
                     request.onRequest(false)
                 })
             )
