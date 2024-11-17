@@ -126,7 +126,7 @@ class Unity: SetsNativeState, ObservableObject  {
         isGameOver = true
     }
 
-    func setHostPosition(x: Float, y: Float) {
+    func setHostPosition(_ x: Float, y: Float) {
         ballPosition = .init(x: Double(x), y: Double(y))
     }
 
