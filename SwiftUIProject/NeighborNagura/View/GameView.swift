@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreMotion
 
 struct GameView: View {
     @StateObject private var unity = Unity.shared
@@ -48,11 +49,7 @@ struct GameView: View {
         }
         .onAppear(perform: handleUnityStart)
         .onDisappear(perform: handleUnityStop)
-        .onChange(of: [
-            motion.accelerometerData?.acceleration.x,
-            motion.accelerometerData?.acceleration.y,
-            motion.accelerometerData?.acceleration.z
-        ]) {
+        .onChange(of: motion.accelerometerData?.acceleration) {
             switch unity.userRole {
             case .host:
                 guard let accelerometerData = motion.accelerometerData else {
@@ -118,5 +115,11 @@ struct GameView: View {
         loading = true
         unity.stop()
         loading = false
+    }
+}
+
+extension CMAcceleration: @retroactive Equatable {
+    public static func == (lhs: CMAcceleration, rhs: CMAcceleration) -> Bool {
+        lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z
     }
 }
