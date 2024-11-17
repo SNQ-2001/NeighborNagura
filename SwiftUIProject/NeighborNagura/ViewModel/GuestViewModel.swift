@@ -31,7 +31,8 @@ class GuestViewModel: NSObject, ObservableObject {
     @Published var userRole: Unity.UserRole?
     
     init(gameState: GameState) {
-        let peer = MCPeerID(displayName: UIDevice.current.name)
+        let displayNameList = ["Job:魔法使い", "Job:ヒーラー", "Job:アーチャー", "Job:賢者", "アベヒロシ", "ハラダタイゾウデス"]
+        let peer = MCPeerID(displayName: displayNameList.randomElement()!)
         self.gameState = gameState
         self.gameState.setProperties(_session: MCSession(peer: peer), _ballState: BallState(position: BallPosition(x: 0, y: 0)))
         
